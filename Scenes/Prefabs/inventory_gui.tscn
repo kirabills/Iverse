@@ -15,7 +15,7 @@ script = ExtResource("1_hfmfm")
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_right = 357.0
-offset_bottom = 228.0
+offset_bottom = 275.0
 texture = ExtResource("1_y5uw1")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -80,4 +80,19 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Slot15" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot16" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot17" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot18" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot19" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot20" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
 layout_mode = 2

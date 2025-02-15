@@ -3,7 +3,6 @@ class_name Player
 
 @export_category("Atributos Player")
 @export var SPEED = 120
-@export var JUMP_VELOCITY = -400.0
 @export var invert = false
 
 @export_category("Objetcts")
@@ -12,7 +11,6 @@ class_name Player
 @export var inventory: Inventory
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(_delta):
 	# Adiciona gravidade se o personagem não estiver no chão
