@@ -178,10 +178,10 @@ inventario = ExtResource("2_53uw1")
 texture_filter = 1
 zoom = Vector2(1.5, 1.5)
 process_callback = 0
-limit_left = -50000000
-limit_top = -50000000
-limit_right = 50000000
-limit_bottom = 50000000
+limit_left = -20000000
+limit_top = -20000000
+limit_right = 20000000
+limit_bottom = 20000000
 limit_smoothed = true
 position_smoothing_enabled = true
 
