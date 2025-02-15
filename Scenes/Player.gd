@@ -9,7 +9,7 @@ class_name Player
 @export_category("Objetcts")
 @export var anim : AnimationPlayer
 @export var player : Sprite2D
-@export var inventario: Inventory
+@export var inventory: Inventory
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -44,3 +44,8 @@ func anim_p(direction):
 			#anim.play("Walk_Down")
 	else:
 		anim.play("Idle")
+
+@onready var inv : coletavel
+func _on_action_area_entered(area: Area2D) -> void:
+	if area.has_method("collect"):
+		area.collect(inventory)

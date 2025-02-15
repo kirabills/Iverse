@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://d34pkvvahlqor"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/Items/life_pot.gd" id="1_e7jiv"]
+[ext_resource type="Texture2D" uid="uid://bp7k1j3gak8rf" path="res://Assets/Ninja Adventure - Asset Pack/Items/Potion/LifePot.png" id="1_hu6l5"]
+[ext_resource type="PackedScene" uid="uid://bhcakvqm5e4ri" path="res://Scenes/Prefabs/coletavel.tscn" id="1_topb0"]
+[ext_resource type="Resource" uid="uid://c6n88jmpy3tgs" path="res://Scripts/Inventory/Items/lifepot.tres" id="2_awfxe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6e68q"]
+resource_local_to_scene = true
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_qrnvh"]
+resource_name = "spin"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1.5708, -0.2, 0, 0.2, 0, 3.14159, -0.2, 0, 0.2, 0, 6.28319, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667)
+}
+
+[sub_resource type="Animation" id="Animation_0trbx"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6trwh"]
+_data = {
+"RESET": SubResource("Animation_0trbx"),
+"spin": SubResource("Animation_qrnvh")
+}
+
+[node name="LifePot" instance=ExtResource("1_topb0")]
+script = ExtResource("1_e7jiv")
+ItemRes = ExtResource("2_awfxe")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_6e68q")
+
+[node name="Texture" parent="." index="1"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_hu6l5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+root_node = NodePath("../Texture")
+libraries = {
+"": SubResource("AnimationLibrary_6trwh")
+}

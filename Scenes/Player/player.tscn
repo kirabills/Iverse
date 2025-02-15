@@ -172,7 +172,7 @@ script = ExtResource("1_jr7r4")
 SPEED = 150
 anim = NodePath("anim")
 player = NodePath("Sprite2D")
-inventario = ExtResource("2_53uw1")
+inventory = ExtResource("2_53uw1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
@@ -209,3 +209,5 @@ libraries = {
 [node name="actionCollision" type="CollisionShape2D" parent="action"]
 position = Vector2(3, 8)
 shape = SubResource("CircleShape2D_4j3vw")
+
+[connection signal="area_entered" from="action" to="." method="_on_action_area_entered"]

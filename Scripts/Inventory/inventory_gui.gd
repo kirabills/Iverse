@@ -8,9 +8,10 @@ var isOpen: bool = false
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
 func _ready() -> void:
-	_update()
+	inventory.updated.connect(update)
+	update()
 
-func _update() -> void:
+func update() -> void:
 	for i in range(min(inventory.items.size(), slots.size())):
 		slots[i]._update(inventory.items[i])
 
