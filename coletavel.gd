@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "action":
+		await get_tree().create_timer(0.1).timeout
 		queue_free()
