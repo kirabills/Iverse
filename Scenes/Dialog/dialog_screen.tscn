@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg1s2ohmpxcke"]
+
+[ext_resource type="Script" path="res://Scenes/Dialog/dialog_screen.gd" id="1_6c7u7"]
+[ext_resource type="Texture2D" uid="uid://ct31stmg6bf6e" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_74glq"]
+[ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="2_fi1y2"]
+[ext_resource type="Texture2D" uid="uid://bl0oeio1wumj" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="3_2b2a1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_or1cm"]
+line_spacing = 0.0
+font = ExtResource("2_fi1y2")
+font_color = Color(0.152941, 0.0941176, 0.811765, 1)
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_u2woq"]
+
+[node name="DialogScreen" type="Control" node_paths=PackedStringArray("_name", "_dialog", "_faceset")]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("1_6c7u7")
+_name = NodePath("Background/HContainer/VContainer/Name")
+_dialog = NodePath("Background/HContainer/VContainer/Dialog")
+_faceset = NodePath("Background/Faceset")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_74glq")
+expand_mode = 1
+
+[node name="Faceset" type="TextureRect" parent="Background"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 59.0
+offset_bottom = 60.0
+scale = Vector2(1.125, 1.16667)
+texture = ExtResource("3_2b2a1")
+expand_mode = 1
+
+[node name="HContainer" type="HBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = -30.0
+offset_right = 178.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VContainer" type="VBoxContainer" parent="Background/HContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="Background/HContainer/VContainer"]
+layout_mode = 2
+text = "Mago"
+label_settings = SubResource("LabelSettings_or1cm")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Dialog" type="RichTextLabel" parent="Background/HContainer/VContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.996078, 0.721569, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/normal_font = ExtResource("2_fi1y2")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Background/HContainer/VContainer"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(-5, 2)
+scale = Vector2(304, 56)
+texture_normal = SubResource("CanvasTexture_u2woq")
+action = "OK"
