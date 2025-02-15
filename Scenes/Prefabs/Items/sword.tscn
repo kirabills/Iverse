@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0n1mmajf3wtx"]
+
+[ext_resource type="PackedScene" uid="uid://bhcakvqm5e4ri" path="res://Scenes/Prefabs/coletavel.tscn" id="1_2ospf"]
+[ext_resource type="Script" path="res://Scenes/Prefabs/Items/sword.gd" id="2_lw7o8"]
+[ext_resource type="Texture2D" uid="uid://b03ssqgf3ytp4" path="res://Assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword2/Sprite.png" id="2_wqv6f"]
+[ext_resource type="Resource" uid="uid://bmul4d6irilt0" path="res://Scripts/Inventory/Items/sword.tres" id="3_w3f3l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xygld"]
+resource_local_to_scene = true
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_gnctt"]
+resource_name = "spin"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1.5708, -0.2, 0, 0.2, 0, 3.14159, -0.2, 0, 0.2, 0, 6.28319, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_c7fk0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odex3"]
+_data = {
+"RESET": SubResource("Animation_c7fk0"),
+"spin": SubResource("Animation_gnctt")
+}
+
+[node name="Sword" instance=ExtResource("1_2ospf")]
+script = ExtResource("2_lw7o8")
+ItemRes = ExtResource("3_w3f3l")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_xygld")
+
+[node name="Texture" parent="." index="1"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_wqv6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_odex3")
+}

@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_hwrjd"]
 [ext_resource type="PackedScene" uid="uid://cittut5ed5i6c" path="res://Scenes/Prefabs/inventory_gui.tscn" id="2_8w2r8"]
 [ext_resource type="Script" path="res://Scripts/Inventory/canvas_layer.gd" id="2_k4cms"]
+[ext_resource type="TileSet" uid="uid://db0kb2sn2y14v" path="res://Scenes/Prefabs/coletaveis.tres" id="3_emp5t"]
 [ext_resource type="PackedScene" uid="uid://dif8cqn25t3x0" path="res://Scenes/Player/player.tscn" id="4_b2qq3"]
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="5_5i8we"]
 [ext_resource type="PackedScene" uid="uid://b26kno32qinwj" path="res://Scenes/Prefabs/npc.tscn" id="6_mnfd0"]
 [ext_resource type="TileSet" uid="uid://c8hus2w00uhpo" path="res://Scenes/Prefabs/dugeon_tile.tres" id="7_14ovi"]
-[ext_resource type="PackedScene" uid="uid://d34pkvvahlqor" path="res://Scenes/Prefabs/Items/life_pot.tscn" id="8_sdfsr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrvv0"]
 radius = 13.9284
@@ -47,6 +47,10 @@ position = Vector2(4, 6)
 scale = Vector2(1.13306, 1.26664)
 tile_map_data = PackedByteArray("AAADAPv/AAAGAAQAAAADAPz/AAAGAAQAAAAEAAIAAAAGAAYAAAAFAAIAAAAHAAYAAAALAAAAAAAJAAMAAAAIAAEAAAAGAAgAAAAIAAIAAAAGAAgAAAAJAAMAAAAGAAgAAAAKAAMAAAAGAAgAAAAIAAMAAAAGAAgAAAA=")
 tile_set = ExtResource("7_14ovi")
+
+[node name="coletaveis" type="TileMapLayer" parent="Mapa"]
+tile_map_data = PackedByteArray("AAACAP7/AAAAAAAAAQD1//f/AAAAAAAAAQD1/wQAAAAAAAAAAQD+/wUAAAAAAAAAAQD+/wkAAAAAAAAAAQD9/wkAAAAAAAAAAQD///z/AAAAAAAAAQABAAkAAAAAAAAAAQADAAkAAAAAAAAAAQAHAAkAAAAAAAAAAgAJAAsAAAAAAAAAAgAIAAsAAAAAAAAAAgAFAAwAAAAAAAAAAgAEAAwAAAAAAAAAAgADAAwAAAAAAAAAAgACAAwAAAAAAAAAAgACAA0AAAAAAAAAAgD9/w0AAAAAAAAAAgAFAAkAAAAAAAAAAgAKAAkAAAAAAAAAAgAHAAYAAAAAAAAAAgA=")
+tile_set = ExtResource("3_emp5t")
 
 [node name="Player" parent="." instance=ExtResource("4_b2qq3")]
 
@@ -105,18 +109,6 @@ _dialog_data = {
 }
 }
 _hud = NodePath("../HUD")
-
-[node name="LifePot" parent="." instance=ExtResource("8_sdfsr")]
-position = Vector2(62, -7)
-
-[node name="LifePot2" parent="." instance=ExtResource("8_sdfsr")]
-position = Vector2(122, -4)
-
-[node name="LifePot3" parent="." instance=ExtResource("8_sdfsr")]
-position = Vector2(-48, -26)
-
-[node name="LifePot4" parent="." instance=ExtResource("8_sdfsr")]
-position = Vector2(55, 28)
 
 [connection signal="closed" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_opened"]

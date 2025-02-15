@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://db0kb2sn2y14v"]
+
+[ext_resource type="PackedScene" uid="uid://d34pkvvahlqor" path="res://Scenes/Prefabs/Items/life_pot.tscn" id="1_7n4ss"]
+[ext_resource type="PackedScene" uid="uid://d0n1mmajf3wtx" path="res://Scenes/Prefabs/Items/sword.tscn" id="2_5ibel"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xekwu"]
+scenes/1/scene = ExtResource("1_7n4ss")
+scenes/2/scene = ExtResource("2_5ibel")
+
+[resource]
+sources/0 = SubResource("TileSetScenesCollectionSource_xekwu")
