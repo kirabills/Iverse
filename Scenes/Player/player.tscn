@@ -164,7 +164,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4j3vw"]
-radius = 16.6433
+radius = 7.07107
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim", "player")]
 platform_on_leave = 1
@@ -207,4 +207,5 @@ libraries = {
 [node name="action" type="Area2D" parent="."]
 
 [node name="actionCollision" type="CollisionShape2D" parent="action"]
+position = Vector2(3, 8)
 shape = SubResource("CircleShape2D_4j3vw")

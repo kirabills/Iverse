@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dlso6ngcah5un"]
+[gd_scene load_steps=11 format=4 uid="uid://dlso6ngcah5un"]
 
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_hwrjd"]
 [ext_resource type="PackedScene" uid="uid://cittut5ed5i6c" path="res://Scenes/Prefabs/inventory_gui.tscn" id="2_8w2r8"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="5_5i8we"]
 [ext_resource type="PackedScene" uid="uid://b26kno32qinwj" path="res://Scenes/Prefabs/npc.tscn" id="6_mnfd0"]
 [ext_resource type="TileSet" uid="uid://c8hus2w00uhpo" path="res://Scenes/Prefabs/dugeon_tile.tres" id="7_14ovi"]
+[ext_resource type="PackedScene" uid="uid://bhcakvqm5e4ri" path="res://Scenes/Prefabs/coletavel.tscn" id="8_bw5cc"]
+[ext_resource type="Texture2D" uid="uid://c0g5831b1yoqm" path="res://Assets/InvenrtoryArt/InventoryRect.png" id="9_sucqs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrvv0"]
 radius = 13.9284
@@ -104,6 +106,10 @@ _dialog_data = {
 }
 }
 _hud = NodePath("../HUD")
+
+[node name="moeda" parent="." instance=ExtResource("8_bw5cc")]
+position = Vector2(56, 7)
+textura = ExtResource("9_sucqs")
 
 [connection signal="closed" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_opened"]
