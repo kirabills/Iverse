@@ -178,12 +178,16 @@ inventario = ExtResource("2_53uw1")
 texture_filter = 1
 zoom = Vector2(1.5, 1.5)
 process_callback = 0
-limit_left = -20000000
-limit_top = -20000000
-limit_right = 20000000
-limit_bottom = 20000000
 limit_smoothed = true
 position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.7
+drag_right_margin = 0.4
+drag_bottom_margin = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
