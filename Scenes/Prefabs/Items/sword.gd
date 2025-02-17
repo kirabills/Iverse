@@ -5,6 +5,6 @@ extends "res://coletavel.gd"
 
 func collect(inventory: Inventory) -> void:
 	
-	animations.play("spin")
+	animations.play("coletado")
 	await  animations.animation_finished
 	super(inventory)

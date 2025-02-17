@@ -1,48 +1,199 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0n1mmajf3wtx"]
+[gd_scene load_steps=13 format=3 uid="uid://d0n1mmajf3wtx"]
 
 [ext_resource type="PackedScene" uid="uid://bhcakvqm5e4ri" path="res://Scenes/Prefabs/coletavel.tscn" id="1_2ospf"]
 [ext_resource type="Script" path="res://Scenes/Prefabs/Items/sword.gd" id="2_lw7o8"]
-[ext_resource type="Texture2D" uid="uid://b03ssqgf3ytp4" path="res://Assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword2/Sprite.png" id="2_wqv6f"]
 [ext_resource type="Resource" uid="uid://bmul4d6irilt0" path="res://Scripts/Inventory/Items/sword.tres" id="3_w3f3l"]
+[ext_resource type="Texture2D" uid="uid://bv3jwnqv2ajn7" path="res://Assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword/Sword Animated/Swordtember_Day_01_Icon.png" id="4_l88ca"]
+[ext_resource type="Texture2D" uid="uid://l1pe3b8fvchn" path="res://Assets/Ninja Adventure - Asset Pack/FX/Elemental/Flam/SpriteSheet.png" id="5_g4oia"]
+[ext_resource type="AudioStream" uid="uid://cnae1gb82wtxt" path="res://Assets/Ninja Adventure - Asset Pack/Sounds/Game/Gold2.wav" id="6_v06nk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xygld"]
 resource_local_to_scene = true
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_gnctt"]
-resource_name = "spin"
-length = 0.4
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_cq07m"]
+resource_name = "coletado"
+length = 0.5
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:rotation")
+tracks/0/path = NodePath("Texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_g4oia")]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Texture:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1.5708, -0.2, 0, 0.2, 0, 3.14159, -0.2, 0, 0.2, 0, 6.28319, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4)
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Texture:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Texture:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_v06nk")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_n2gq0"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_l88ca")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Texture:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Texture:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Texture:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_c7fk0"]
+[sub_resource type="Animation" id="Animation_2uapw"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:rotation")
+tracks/0/path = NodePath("Texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_l88ca")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_odex3"]
 _data = {
-"RESET": SubResource("Animation_c7fk0"),
-"spin": SubResource("Animation_gnctt")
+"RESET": SubResource("Animation_2uapw"),
+"coletado": SubResource("Animation_cq07m"),
+"idle": SubResource("Animation_n2gq0")
 }
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hnb0h"]
 
 [node name="Sword" instance=ExtResource("1_2ospf")]
 script = ExtResource("2_lw7o8")
@@ -52,10 +203,15 @@ ItemRes = ExtResource("3_w3f3l")
 shape = SubResource("CircleShape2D_xygld")
 
 [node name="Texture" parent="." index="1"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_wqv6f")
+texture = ExtResource("4_l88ca")
+hframes = 5
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_odex3")
+"": SubResource("AnimationLibrary_odex3"),
+"coletado": SubResource("AnimationLibrary_hnb0h")
 }
+autoplay = "idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]

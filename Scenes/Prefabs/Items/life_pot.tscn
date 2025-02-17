@@ -4,44 +4,68 @@
 [ext_resource type="Texture2D" uid="uid://bp7k1j3gak8rf" path="res://Assets/Ninja Adventure - Asset Pack/Items/Potion/LifePot.png" id="1_hu6l5"]
 [ext_resource type="PackedScene" uid="uid://bhcakvqm5e4ri" path="res://Scenes/Prefabs/coletavel.tscn" id="1_topb0"]
 [ext_resource type="Resource" uid="uid://c6n88jmpy3tgs" path="res://Scripts/Inventory/Items/lifepot.tres" id="2_awfxe"]
+[ext_resource type="Animation" uid="uid://bjn0jx2hlasly" path="res://Scenes/Prefabs/anims/coletado.res" id="5_kjyqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e68q"]
 resource_local_to_scene = true
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_qrnvh"]
-resource_name = "spin"
-length = 0.6
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_e4adv"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0, 1.5708, -0.2, 0, 0.2, 0, 3.14159, -0.2, 0, 0.2, 0, 6.28319, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hu6l5")]
 }
-
-[sub_resource type="Animation" id="Animation_0trbx"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1.7, 1.7), Vector2(1.8, 1.8), Vector2(1.5, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6trwh"]
 _data = {
-"RESET": SubResource("Animation_0trbx"),
-"spin": SubResource("Animation_qrnvh")
+"coletado": ExtResource("5_kjyqk"),
+"idle": SubResource("Animation_e4adv")
 }
 
 [node name="LifePot" instance=ExtResource("1_topb0")]
@@ -60,3 +84,6 @@ root_node = NodePath("../Texture")
 libraries = {
 "": SubResource("AnimationLibrary_6trwh")
 }
+autoplay = "idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]

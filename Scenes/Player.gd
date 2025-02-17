@@ -10,6 +10,8 @@ class_name Player
 @export var player : Sprite2D
 @export var inventory: Inventory
 
+var olhando: String = ""
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _physics_process(_delta):
@@ -18,8 +20,10 @@ func _physics_process(_delta):
 	# Captura a direção do movimento
 	var direction = Vector2.ZERO
 	if _global.isControl:
-		direction.x = Input.get_axis("ui_left", "ui_right")
-		direction.y = Input.get_axis("ui_up", "ui_down")
+		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
+			direction.y = Input.get_axis("ui_up", "ui_down")
+		else:
+			direction.x = Input.get_axis("ui_left", "ui_right")
 
 	# Normaliza a direção para evitar velocidades inconsistentes
 	if direction.length() > 0:
@@ -34,16 +38,31 @@ func _physics_process(_delta):
 func anim_p(direction):
 	if direction.length() > 0:
 		if abs(direction.x) > abs(direction.y):
-			anim.play("Walk")
+			anim.play("walk")
 			player.flip_h = direction.x < 0
-		#elif direction.y < 0:
-			#anim.play("Walk_Up")
-		#else:
-			#anim.play("Walk_Down")
+			if player.flip_h:
+				olhando = "Left"
+			else:
+				olhando = "Right"
+		elif direction.y < 0:
+			anim.play("walk_up")
+			olhando = "UP"
+		else:
+			anim.play("walk_down")
+			olhando = "Down"
 	else:
-		anim.play("Idle")
-
+		match olhando:
+			"Left":
+				anim.play("idle_left")
+			"Right":
+				anim.play("idle_right")
+			"UP":
+				anim.play("idle_up")
+			"Down":
+				anim.play("idle_down")
+			
 @onready var inv : coletavel
 func _on_action_area_entered(area: Area2D) -> void:
 	if area.has_method("collect"):
 		area.collect(inventory)
+		
