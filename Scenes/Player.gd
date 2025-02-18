@@ -38,12 +38,15 @@ func _physics_process(_delta):
 func anim_p(direction):
 	if direction.length() > 0:
 		if abs(direction.x) > abs(direction.y):
-			anim.play("walk")
+			#anim.play("walk")
 			player.flip_h = direction.x < 0
-			if player.flip_h:
+			if player.flip_h == true:
 				olhando = "Left"
-			else:
+				anim.play("walk_left")
+			elif player.flip_h == false:
+				anim.play("walk")
 				olhando = "Right"
+				
 		elif direction.y < 0:
 			anim.play("walk_up")
 			olhando = "UP"

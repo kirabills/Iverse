@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://7fvlpumlm736"]
+[gd_scene load_steps=4 format=3 uid="uid://7fvlpumlm736"]
 
 [ext_resource type="Texture2D" uid="uid://c4jtfheqo7w60" path="res://Assets/InvenrtoryArt/inventorySlot.png" id="1_dn7id"]
 [ext_resource type="Script" path="res://Scripts/Inventory/slot_gui.gd" id="1_sl65j"]
+[ext_resource type="FontFile" uid="uid://clj6t2kgwb80v" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_58mxa"]
 
-[node name="Slot" type="Panel"]
+[node name="Slot" type="Panel" node_paths=PackedStringArray("amountLabel")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(63, 60)
 offset_right = 63.0
 offset_bottom = 60.0
 script = ExtResource("1_sl65j")
+amountLabel = NodePath("CenterContainer/Panel/Label")
 
 [node name="background" type="Sprite2D" parent="."]
 scale = Vector2(3.15, 3)
@@ -26,3 +28,17 @@ offset_bottom = 60.0
 layout_mode = 2
 
 [node name="item" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(11, 14)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 25.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.992199, 0.76841, 0.0609924, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_58mxa")
+theme_override_font_sizes/font_size = 14
+text = "99"
+horizontal_alignment = 2

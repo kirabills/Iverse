@@ -7,3 +7,4 @@
 script = ExtResource("1_q2x2y")
 name = "sword"
 texture = ExtResource("2_x4akg")
+max_amount = 2
