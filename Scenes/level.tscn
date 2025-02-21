@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cjngyku3cbcw8" path="res://Assets/sprites/tilesets/grass.png" id="2_7nnq8"]
 [ext_resource type="PackedScene" uid="uid://cittut5ed5i6c" path="res://Scenes/Prefabs/inventory_gui.tscn" id="2_8w2r8"]
 [ext_resource type="Script" path="res://Scripts/Inventory/canvas_layer.gd" id="2_k4cms"]
-[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="2_tc2og"]
+[ext_resource type="PackedScene" uid="uid://c0plpft36a40d" path="res://Scenes/Prefabs/camera_2d.tscn" id="2_y6neh"]
 [ext_resource type="TileSet" uid="uid://db0kb2sn2y14v" path="res://Scenes/Prefabs/coletaveis.tres" id="3_emp5t"]
 [ext_resource type="PackedScene" uid="uid://dif8cqn25t3x0" path="res://Scenes/Player/player.tscn" id="4_b2qq3"]
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="5_5i8we"]
@@ -83,28 +83,25 @@ _dialog_data = {
 }
 _hud = NodePath("HUD")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player", "limite_right")]
-texture_filter = 1
-zoom = Vector2(1.2, 1.2)
-process_callback = 0
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.14
-drag_top_margin = 0.13
-drag_right_margin = 0.13
-drag_bottom_margin = 0.14
-editor_draw_limits = true
-editor_draw_drag_margin = true
-script = ExtResource("2_tc2og")
+[node name="Camera2D" parent="." node_paths=PackedStringArray("player", "limite_right", "limite_left", "limite_up", "limite_down") instance=ExtResource("2_y6neh")]
 player = NodePath("../Player")
 limite_right = NodePath("Limit_rigth")
+limite_left = NodePath("Limit_left")
+limite_up = NodePath("Limit_up")
+limite_down = NodePath("Limit_down")
 
 [node name="Limit_rigth" type="Marker2D" parent="Camera2D"]
 position = Vector2(1564, -1)
 scale = Vector2(10, 10)
+
+[node name="Limit_left" type="Marker2D" parent="Camera2D"]
+position = Vector2(-2088, 151)
+
+[node name="Limit_up" type="Marker2D" parent="Camera2D"]
+position = Vector2(-75, -1146)
+
+[node name="Limit_down" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, 1789)
 
 [node name="Mapa" type="Node2D" parent="."]
 
