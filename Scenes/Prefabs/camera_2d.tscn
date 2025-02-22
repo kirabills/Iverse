@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="1_t4kpx"]
 
-[node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("limite_right")]
+[node name="Camera2D" type="Camera2D"]
 texture_filter = 1
 zoom = Vector2(1.2, 1.2)
 process_callback = 0
@@ -18,4 +18,3 @@ drag_bottom_margin = 0.14
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_t4kpx")
-limite_right = NodePath("")

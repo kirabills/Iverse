@@ -5,16 +5,22 @@ signal closed
 var isOpen: bool = false
 
 @onready var inventory: Inventory = preload("res://Scripts/Inventory/playerInventory.tres")
-@onready var ItemStakGuiClass = preload("res://Scenes/Prefabs/itemsStackGui.tscn")
+@onready var ItemStackGuiClass = preload("res://Scenes/Prefabs/itemsStackGui.tscn")
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
-func _ready() -> void:
+var itemInHand: ItemStackGui
+
+
+func _ready() -> void: 
 	connectSlots()
 	inventory.updated.connect(update)
 	update()
 
 func connectSlots() -> void:
-	for slot in slots:
+	for i in range(slots.size()):
+		var slot = slots[i]
+		slot.index = i
+		
 		var callable = Callable(onSlotClicked)
 		callable = callable.bind(slot)
 		slot.pressed.connect(callable)
@@ -27,7 +33,7 @@ func update() -> void:
 		
 		var itemStackGui: ItemStackGui = slots[i].itemStackGui
 		if !itemStackGui:
-			itemStackGui = ItemStakGuiClass.instantiate()
+			itemStackGui = ItemStackGuiClass.instantiate()
 			slots[i].insert(itemStackGui)
 		itemStackGui.inventorySlot = inventorySlot
 		itemStackGui.update()
@@ -43,4 +49,26 @@ func _close() -> void:
 	closed.emit()
 	
 func onSlotClicked(slot) -> void:
-	pass
+	if slot.isEmpty() && itemInHand:
+		insertItemInSlot(slot)
+		return
+	if !itemInHand:
+		takeItemFromSlot(slot)
+
+func takeItemFromSlot(slot):
+	itemInHand = slot.takeItem()
+	add_child(itemInHand)
+	updateItemInHand()
+	
+func insertItemInSlot(slot):
+	var item = itemInHand
+	remove_child(itemInHand)
+	itemInHand = null
+	
+	slot.insert(item)
+
+func updateItemInHand():
+	if !itemInHand: return
+	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
+func _input(_event: InputEvent) -> void:
+	updateItemInHand()
