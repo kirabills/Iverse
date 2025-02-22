@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://dlso6ngcah5un"]
+[gd_scene load_steps=17 format=4 uid="uid://dlso6ngcah5un"]
 
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_hwrjd"]
 [ext_resource type="Texture2D" uid="uid://cjngyku3cbcw8" path="res://Assets/sprites/tilesets/grass.png" id="2_7nnq8"]
-[ext_resource type="PackedScene" uid="uid://cittut5ed5i6c" path="res://Scenes/Prefabs/inventory_gui.tscn" id="2_8w2r8"]
-[ext_resource type="Script" path="res://Scripts/Inventory/canvas_layer.gd" id="2_k4cms"]
 [ext_resource type="PackedScene" uid="uid://c0plpft36a40d" path="res://Scenes/Prefabs/camera_2d.tscn" id="2_y6neh"]
 [ext_resource type="TileSet" uid="uid://db0kb2sn2y14v" path="res://Scenes/Prefabs/coletaveis.tres" id="3_emp5t"]
 [ext_resource type="PackedScene" uid="uid://dif8cqn25t3x0" path="res://Scenes/Player/player.tscn" id="4_b2qq3"]
@@ -11,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cn5qudfieayjk" path="res://Assets/sprites/tilesets/fences.png" id="5_dvtcx"]
 [ext_resource type="PackedScene" uid="uid://b26kno32qinwj" path="res://Scenes/Prefabs/npc.tscn" id="6_mnfd0"]
 [ext_resource type="TileSet" uid="uid://c8hus2w00uhpo" path="res://Scenes/Prefabs/dugeon_tile.tres" id="7_14ovi"]
+[ext_resource type="PackedScene" uid="uid://boavrpsmwi2di" path="res://Scenes/Prefabs/hud.tscn" id="8_tapeh"]
 [ext_resource type="AudioStream" uid="uid://upbieh0lat6v" path="res://Assets/Ninja Adventure - Asset Pack/Musics/13 - Mystical.ogg" id="9_tp3l8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueawt"]
@@ -62,7 +61,7 @@ sources/0 = SubResource("TileSetAtlasSource_fy7w5")
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrvv0"]
 radius = 13.9284
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_hud")]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_hwrjd")
 _dialog_data = {
 0: {
@@ -81,7 +80,6 @@ _dialog_data = {
 "title": "Paladino"
 }
 }
-_hud = NodePath("HUD")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player", "limite_right", "limite_left", "limite_up", "limite_down") instance=ExtResource("2_y6neh")]
 player = NodePath("../Player")
@@ -133,24 +131,7 @@ tile_set = SubResource("TileSet_o2t00")
 
 [node name="Player" parent="." instance=ExtResource("4_b2qq3")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-process_mode = 3
-script = ExtResource("2_k4cms")
-
-[node name="InventoryGUI" parent="HUD" instance=ExtResource("2_8w2r8")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -176.0
-offset_top = -135.5
-offset_right = 179.0
-offset_bottom = 94.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
+[node name="HUD" parent="." instance=ExtResource("8_tapeh")]
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("_hud")]
 visible = false
@@ -193,6 +174,4 @@ _hud = NodePath("../HUD")
 stream = ExtResource("9_tp3l8")
 autoplay = true
 
-[connection signal="closed" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_closed"]
-[connection signal="opened" from="HUD/InventoryGUI" to="." method="_on_inventory_gui_opened"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
