@@ -50,6 +50,7 @@ func _close() -> void:
 	isOpen = false
 	closed.emit()
 	
+	
 func onSlotClicked(slot) -> void:
 	if locked: return
 	

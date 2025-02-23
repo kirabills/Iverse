@@ -69,3 +69,10 @@ offset_left = 245.0
 offset_top = 400.0
 offset_right = 576.0
 offset_bottom = 460.0
+
+[node name="HotBarMobile" parent="." instance=ExtResource("5_juar7")]
+offset_left = 840.0
+offset_top = 87.0
+offset_right = 1171.0
+offset_bottom = 147.0
+rotation = 1.5708
