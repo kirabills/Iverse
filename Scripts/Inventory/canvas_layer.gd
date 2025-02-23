@@ -17,6 +17,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("inventory"):
 		if inventory.isOpen:
 			inventory._close()
-			inventory.putItemBack()
+			if inventory.itemInHand:
+				inventory.putItemBack()
 		else:
 			inventory._open()
