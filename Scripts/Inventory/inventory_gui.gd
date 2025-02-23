@@ -6,10 +6,12 @@ var isOpen: bool = false
 
 @onready var inventory: Inventory = preload("res://Scripts/Inventory/playerInventory.tres")
 @onready var ItemStackGuiClass = preload("res://Scenes/Prefabs/itemsStackGui.tscn")
-@onready var slots: Array = $NinePatchRect/GridContainer.get_children()
+@onready var hotbar_slots: Array = $NinePatchRect/HBoxContainer.get_children()
+@onready var slots: Array = hotbar_slots + $NinePatchRect/GridContainer.get_children()
 
 var itemInHand: ItemStackGui
-
+var oldIndex: int = -1
+var locked: bool = false
 
 func _ready() -> void: 
 	connectSlots()
@@ -49,6 +51,8 @@ func _close() -> void:
 	closed.emit()
 	
 func onSlotClicked(slot) -> void:
+	if locked: return
+	
 	if slot.isEmpty():
 		if !itemInHand: return
 		
@@ -70,13 +74,17 @@ func takeItemFromSlot(slot):
 	add_child(itemInHand)
 	updateItemInHand()
 	
+	oldIndex = slot.index
+	
 func insertItemInSlot(slot):
 	var item = itemInHand
 	remove_child(itemInHand)
 	itemInHand = null
 	
 	slot.insert(item)
-
+	
+	oldIndex = -1
+	
 func swapItems(slot):
 	var tempItem = slot.takeItem()
 	insertItemInSlot(slot)
@@ -97,6 +105,8 @@ func stackItems(slot):
 		slotItem.inventorySlot.amount = totalAmount
 		remove_child(itemInHand)
 		itemInHand = null
+		oldIndex = -1
+		
 	else:
 		slotItem.inventorySlot.amount = maxAmount
 		itemInHand.inventorySlot.amount = totalAmount - maxAmount
@@ -107,5 +117,25 @@ func stackItems(slot):
 func updateItemInHand():
 	if !itemInHand: return
 	itemInHand.global_position = get_global_mouse_position() - itemInHand.size / 2
+	
+func putItemBack():
+	locked = true
+	if oldIndex < 0:
+		var emptySlots = slots.filter(func(s): return s.isEmpty())
+		if emptySlots.is_empty(): return
+		
+		oldIndex = emptySlots[0].index
+		
+	var targetSlot = slots[oldIndex]
+	var tween = create_tween()
+	var targetPosition = targetSlot.global_position + targetSlot.size / 2
+	
+	tween.tween_property(itemInHand, "global_position", targetPosition, 0.4)
+	
+	await tween.finished
+	insertItemInSlot(targetSlot)
+	locked = false
 func _input(_event: InputEvent) -> void:
+	if itemInHand && !locked && Input.is_action_pressed("right_click"):
+		putItemBack()
 	updateItemInHand()

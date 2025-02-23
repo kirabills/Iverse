@@ -15,12 +15,34 @@ script = ExtResource("1_hfmfm")
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_right = 357.0
-offset_bottom = 275.0
+offset_bottom = 289.0
 texture = ExtResource("1_y5uw1")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 344.0
+offset_bottom = 80.0
+
+[node name="Slot" parent="NinePatchRect/HBoxContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot2" parent="NinePatchRect/HBoxContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot3" parent="NinePatchRect/HBoxContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot4" parent="NinePatchRect/HBoxContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
+
+[node name="Slot5" parent="NinePatchRect/HBoxContainer" instance=ExtResource("2_db52y")]
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
 layout_mode = 1
@@ -29,28 +51,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -166.0
-offset_top = -126.0
-offset_right = 166.0
-offset_bottom = 126.0
+offset_left = -165.5
+offset_top = -56.5
+offset_right = 166.5
+offset_bottom = 133.5
 grow_horizontal = 2
 grow_vertical = 2
 columns = 5
-
-[node name="Slot" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
-layout_mode = 2
-
-[node name="Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
-layout_mode = 2
-
-[node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
-layout_mode = 2
-
-[node name="Slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
-layout_mode = 2
-
-[node name="Slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
-layout_mode = 2
 
 [node name="Slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_db52y")]
 layout_mode = 2
