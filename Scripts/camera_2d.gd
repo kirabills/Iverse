@@ -9,6 +9,7 @@ extends Camera2D
 @export var limite_down: Marker2D
 
 func _ready() -> void:
+	self.make_current()
 	self.limit_right = int(limite_right.position.x)
 	self.limit_left = int(limite_left.position.x)
 	self.limit_top = int(limite_up.position.y)

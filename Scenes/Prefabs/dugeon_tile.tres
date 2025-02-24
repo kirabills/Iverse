@@ -1,10 +1,22 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c8hus2w00uhpo"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://c8hus2w00uhpo"]
 
 [ext_resource type="Texture2D" uid="uid://chqc0cm2b5pdx" path="res://Assets/character and tileset/Dungeon_Tileset.png" id="1_1prdt"]
 [ext_resource type="Texture2D" uid="uid://dhlwgie5mf8ii" path="res://Assets/sprites/tilesets/plains.png" id="2_0itbp"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_recsi"]
 tile_data = PackedInt32Array(0, 65537, 4, 65536, 65537, 5, 131072, 65537, 5, 196608, 65537, 5, 262144, 65537, 5, 327680, 65537, 5, 393216, 65537, 5, 458752, 65537, 5, 524288, 65537, 5, 589824, 65537, 5, 655360, 65537, 5, 720896, 65537, 5, 786432, 65537, 5, 851968, 65537, 5, 917504, 65537, 5, 983040, 65537, 6, 1, 131073, 4, 65537, 131073, 5, 131073, 131073, 5, 196609, 131073, 5, 262145, 131073, 5, 327681, 131073, 5, 393217, 131073, 5, 458753, 131073, 5, 524289, 131073, 5, 589825, 131073, 5, 655361, 131073, 5, 720897, 131073, 5, 786433, 131073, 5, 851969, 131073, 5, 917505, 131073, 5, 983041, 131073, 6, 2, 196609, 4, 65538, 196609, 5, 131074, 196609, 5, 196610, 196609, 5, 262146, 196609, 5, 327682, 196609, 5, 393218, 196609, 5, 458754, 196609, 5, 524290, 196609, 5, 589826, 196609, 5, 655362, 196609, 5, 720898, 196609, 5, 786434, 196609, 5, 851970, 196609, 5, 917506, 196609, 5, 983042, 196609, 6)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_h00ho"]
+tile_data = PackedInt32Array(0, 65537, 5, 65536, 65537, 5, 131072, 65537, 5, 1, 131073, 5, 65537, 131073, 5, 131073, 131073, 5, 2, 196609, 5, 65538, 196609, 5, 131074, 196609, 5)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5iwrw"]
+tile_data = PackedInt32Array(0, 65537, 5, 65536, 65537, 5, 131072, 65537, 6, 1, 131073, 5, 65537, 131073, 5, 131073, 131073, 6, 2, 196609, 5, 65538, 196609, 5, 131074, 196609, 6)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ouq3p"]
+tile_data = PackedInt32Array(0, 65537, 4, 65536, 131073, 1610612740, 131072, 131073, 1610612740, 196608, 131073, 1610612740, 262144, 131073, 1610612740, 1, 131073, 4, 65537, 131073, 5, 131073, 131073, 5, 196609, 131073, 5, 262145, 131073, 5, 2, 131073, 4, 65538, 131073, 1610612741, 131074, 131073, 5, 196610, 131073, 5, 262146, 131073, 5, 3, 131073, 4, 65539, 131073, 1610612741, 131075, 131073, 5, 196611, 131073, 5, 262147, 131073, 5, 4, 131073, 4, 65540, 131073, 1610612741, 131076, 262145, 4, 196612, 196609, 5, 262148, 196609, 5, 5, 131073, 4, 65541, 131073, 1610612741, 131077, 65537, 1610612741)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_3ah75"]
+tile_data = PackedInt32Array(0, 196609, 1342177285, 1, 196609, 1342177285, 2, 262145, 1342177284, 65538, 65537, 5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gsyrw"]
 resource_name = "Dugeon"
@@ -256,3 +268,7 @@ terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_gsyrw")
 sources/1 = SubResource("TileSetAtlasSource_smta8")
 pattern_0 = SubResource("TileMapPattern_recsi")
+pattern_1 = SubResource("TileMapPattern_h00ho")
+pattern_2 = SubResource("TileMapPattern_5iwrw")
+pattern_3 = SubResource("TileMapPattern_ouq3p")
+pattern_4 = SubResource("TileMapPattern_3ah75")
