@@ -26,91 +26,53 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 
+[node name="Mobile" type="Node2D" parent="."]
+
+[node name="InventoryButton" type="TouchScreenButton" parent="Mobile"]
+position = Vector2(801, 9)
+scale = Vector2(0.191388, 0.142857)
+texture_normal = ExtResource("3_ystle")
+action = "inventory"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Mobile"]
+position = Vector2(17, 387)
+scale = Vector2(0.4, 0.335)
+texture_normal = ExtResource("4_vp5qr")
+passby_press = true
+action = "ui_left"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Mobile"]
+position = Vector2(94, 347)
+rotation = 1.5708
+scale = Vector2(0.4, 0.335)
+texture_normal = ExtResource("4_vp5qr")
+passby_press = true
+action = "ui_up"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="Mobile"]
+position = Vector2(137, 421)
+rotation = 3.14159
+scale = Vector2(0.4, 0.335)
+texture_normal = ExtResource("4_vp5qr")
+passby_press = true
+action = "ui_right"
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Mobile"]
+position = Vector2(59, 463)
+rotation = -1.5708
+scale = Vector2(0.4, 0.335)
+texture_normal = ExtResource("4_vp5qr")
+passby_press = true
+action = "ui_down"
+
 [node name="HotBar" parent="." instance=ExtResource("5_juar7")]
 offset_left = 245.0
 offset_top = 400.0
 offset_right = 576.0
 offset_bottom = 460.0
-size_flags_horizontal = 4
-size_flags_vertical = 10
 
-[node name="ControlesConatainer" type="AspectRatioContainer" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 45.0
-offset_right = 25.0
-offset_bottom = 45.0
-grow_vertical = 2
-size_flags_horizontal = 2
-size_flags_vertical = 10
-metadata/_edit_use_anchors_ = true
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="ControlesConatainer"]
-position = Vector2(3, 66)
-scale = Vector2(0.6, 0.503)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_left"
-
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="ControlesConatainer"]
-position = Vector2(105, 5)
-rotation = 1.5708
-scale = Vector2(0.6, 0.503)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_up"
-
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="ControlesConatainer"]
-position = Vector2(155, 118)
-rotation = 3.14159
-scale = Vector2(0.6, 0.503)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_right"
-
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="ControlesConatainer"]
-position = Vector2(53, 177)
-rotation = -1.5708
-scale = Vector2(0.6, 0.503)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_down"
-
-[node name="pause" type="BoxContainer" parent="."]
-anchors_preset = -1
-anchor_left = 1.00003
-anchor_top = -0.000583334
-anchor_right = 1.00355
-anchor_bottom = -0.000583331
-offset_left = -62.025
-offset_top = 5.28
-offset_right = -22.025
-offset_bottom = 45.28
-grow_horizontal = 0
-size_flags_horizontal = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="InventoryButton" type="TouchScreenButton" parent="pause"]
-position = Vector2(1.99999, 4)
-scale = Vector2(0.191388, 0.142857)
-texture_normal = ExtResource("3_ystle")
-action = "inventory"
-
-[node name="HotBarmobileConatainer" type="BoxContainer" parent="."]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -148.0
-offset_right = -17.0
-offset_bottom = 168.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 6
-
-[node name="HotBarMobile" parent="HotBarmobileConatainer" instance=ExtResource("6_cp176")]
-layout_mode = 2
+[node name="HotBarMobile" parent="." instance=ExtResource("6_cp176")]
+offset_left = 778.0
+offset_top = 88.0
+offset_right = 841.0
+offset_bottom = 404.0
