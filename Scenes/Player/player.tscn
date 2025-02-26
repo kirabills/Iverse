@@ -590,6 +590,7 @@ _data = {
 size = Vector2(16, 26)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim", "player")]
+z_index = 2
 platform_on_leave = 1
 script = ExtResource("1_jr7r4")
 SPEED = 150

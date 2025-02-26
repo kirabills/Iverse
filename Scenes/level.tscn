@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dlso6ngcah5un"]
+[gd_scene load_steps=17 format=4 uid="uid://dlso6ngcah5un"]
 
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_hwrjd"]
 [ext_resource type="Texture2D" uid="uid://cjngyku3cbcw8" path="res://Assets/sprites/tilesets/grass.png" id="2_7nnq8"]
@@ -10,6 +10,9 @@
 [ext_resource type="TileSet" uid="uid://c8hus2w00uhpo" path="res://Scenes/Prefabs/dugeon_tile.tres" id="7_14ovi"]
 [ext_resource type="PackedScene" uid="uid://boavrpsmwi2di" path="res://Scenes/Prefabs/hud.tscn" id="8_tapeh"]
 [ext_resource type="AudioStream" uid="uid://upbieh0lat6v" path="res://Assets/Ninja Adventure - Asset Pack/Musics/13 - Mystical.ogg" id="9_tp3l8"]
+[ext_resource type="PackedScene" uid="uid://i6ndjsh7s8iv" path="res://Scenes/Prefabs/inventory_item.tscn" id="11_vo88e"]
+[ext_resource type="Texture2D" uid="uid://yjtli3rb0wsg" path="res://Assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword/Sword Icons/Swordtember_18.png" id="12_e0154"]
+[ext_resource type="Texture2D" uid="uid://w0u58f1n7ukw" path="res://Assets/Ninja Adventure - Asset Pack/Items/Potion/MilkPot.png" id="12_kont6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueawt"]
 texture = ExtResource("2_7nnq8")
@@ -132,5 +135,13 @@ stream = ExtResource("9_tp3l8")
 autoplay = true
 playback_type = 1
 parameters/looping = true
+
+[node name="Inventory_item" parent="." instance=ExtResource("11_vo88e")]
+position = Vector2(82, 27)
+item_texture = ExtResource("12_kont6")
+
+[node name="Inventory_item2" parent="." instance=ExtResource("11_vo88e")]
+position = Vector2(129, 38)
+item_texture = ExtResource("12_e0154")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
