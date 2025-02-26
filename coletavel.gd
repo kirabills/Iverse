@@ -5,11 +5,11 @@ class_name coletavel
 
 
 @export_category("Items de Inventario")
-@export var ItemRes: InventoryItem
+#@export var ItemRes: InventoryItem
 
 
 
 
-func collect(inventory: Inventory) -> void:
-	inventory.insert(ItemRes)
-	queue_free()
+#func collect(inventory: Inventory) -> void:
+#	inventory.insert(ItemRes)
+	#queue_free()

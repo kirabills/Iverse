@@ -1,6 +1,6 @@
 extends Area2D
 
-const _DIALOG_SCREEN: PackedScene = preload("res://Scenes/Dialog/dialog_screen.tscn")
+#const _DIALOG_SCREEN: PackedScene = preload("res://Scenes/Dialog/dialog_screen.tscn")
 
 @export_category("Dialogos")
 @export var _dialog_data: Dictionary = {
@@ -18,7 +18,7 @@ const _DIALOG_SCREEN: PackedScene = preload("res://Scenes/Dialog/dialog_screen.t
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "action":
-		var _new_dialog: DialogScreen = _DIALOG_SCREEN.instantiate()
+		var _new_dialog: DialogScreen = _global._DIALOG_SCREEN.instantiate()
 		_new_dialog.data = _dialog_data
 		_hud.add_child(_new_dialog)
 		

@@ -8,7 +8,7 @@ class_name Player
 @export_category("Objetcts")
 @export var anim : AnimationPlayer
 @export var player : Sprite2D
-@export var inventory: Inventory
+
 
 var olhando: String = ""
 
@@ -65,7 +65,7 @@ func anim_p(direction):
 				anim.play("idle_down")
 			
 @onready var inv : coletavel
-func _on_action_area_entered(area: Area2D) -> void:
-	if area.has_method("collect"):
-		area.collect(inventory)
+func _on_action_area_entered(_area: Area2D) -> void:
+	#if area.has_method("collect"):
+		pass
 		
