@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://boavrpsmwi2di"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory/canvas_layer.gd" id="1_vl57a"]
+[ext_resource type="Script" uid="uid://b1idtg5fgjavy" path="res://Scripts/Inventory/canvas_layer.gd" id="1_vl57a"]
 [ext_resource type="Texture2D" uid="uid://cdsffh7pjsbbr" path="res://Assets/UI/Icons/150ppp/UI NUEVA-09.png" id="3_ystle"]
-[ext_resource type="Texture2D" uid="uid://c4h5g8n6noq4b" path="res://Assets/UI/Icons/72ppp/UI NUEVA-03.png" id="4_vp5qr"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_yppxs"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -11,38 +11,15 @@ script = ExtResource("1_vl57a")
 [node name="Mobile" type="Node2D" parent="."]
 
 [node name="InventoryButton" type="TouchScreenButton" parent="Mobile"]
+z_index = 10
 position = Vector2(801, 9)
 scale = Vector2(0.191388, 0.142857)
 texture_normal = ExtResource("3_ystle")
 action = "inventory"
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Mobile"]
-position = Vector2(17, 387)
-scale = Vector2(0.4, 0.335)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_left"
-
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="Mobile"]
-position = Vector2(94, 347)
-rotation = 1.5708
-scale = Vector2(0.4, 0.335)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_up"
-
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="Mobile"]
-position = Vector2(137, 421)
-rotation = 3.14159
-scale = Vector2(0.4, 0.335)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_right"
-
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="Mobile"]
-position = Vector2(59, 463)
-rotation = -1.5708
-scale = Vector2(0.4, 0.335)
-texture_normal = ExtResource("4_vp5qr")
-passby_press = true
-action = "ui_down"
+[node name="Virtual Joystick" parent="." instance=ExtResource("4_yppxs")]
+offset_left = 46.0
+offset_top = -191.0
+offset_right = 196.0
+offset_bottom = -41.0
+pressed_color = Color(0.798333, 0, 0.385858, 1)

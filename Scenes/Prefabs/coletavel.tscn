@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhcakvqm5e4ri"]
 
-[ext_resource type="Script" path="res://coletavel.gd" id="1_ecpd2"]
+[ext_resource type="Script" uid="uid://dtkntc55rjnqn" path="res://coletavel.gd" id="1_ecpd2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j821"]
 resource_local_to_scene = true

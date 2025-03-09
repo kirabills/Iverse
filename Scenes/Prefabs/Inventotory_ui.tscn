@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgv2683sr35lu"]
+
+[ext_resource type="Script" uid="uid://cpt7nh8k5iw5h" path="res://Scripts/Inventory/inventotory_ui.gd" id="1_kwehk"]
+
+[node name="Inventotory_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kwehk")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 39.0
+offset_top = 71.0
+offset_right = 795.0
+offset_bottom = 397.0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 10
+columns = 5

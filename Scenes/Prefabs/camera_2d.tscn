@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0plpft36a40d"]
 
-[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="1_t4kpx"]
+[ext_resource type="Script" uid="uid://onvkx3outde0" path="res://Scripts/camera_2d.gd" id="1_t4kpx"]
 
 [node name="Camera2D" type="Camera2D"]
 texture_filter = 1

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+#variaves export
 @export_category("Atributos Player")
 @export var SPEED = 120
 @export var invert = false
@@ -10,20 +11,22 @@ class_name Player
 @export var player : Sprite2D
 
 
+#onready variaveis
+@onready var interact_ui: CanvasLayer = $InteractUI
+@onready var inventory_ui: CanvasLayer = $InventoryUI
+# variaveis mista
 var olhando: String = ""
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+func _ready() -> void:
+	Inventory_g.set_player_reference(self)
 
 func _physics_process(_delta):
-	# Adiciona gravidade se o personagem não estiver no chão
+
 
 	# Captura a direção do movimento
 	var direction = Vector2.ZERO
 	if _global.isControl:
-		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
-			direction.y = Input.get_axis("ui_up", "ui_down")
-		else:
-			direction.x = Input.get_axis("ui_left", "ui_right")
+		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 	# Normaliza a direção para evitar velocidades inconsistentes
 	if direction.length() > 0:
@@ -34,6 +37,11 @@ func _physics_process(_delta):
 
 	velocity = direction
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("inventory"):
+		inventory_ui.visible = !inventory_ui.visible
+		get_tree().paused = !get_tree().paused
 
 func anim_p(direction):
 	if direction.length() > 0:
@@ -64,7 +72,7 @@ func anim_p(direction):
 			"Down":
 				anim.play("idle_down")
 			
-@onready var inv : coletavel
+
 func _on_action_area_entered(_area: Area2D) -> void:
 	#if area.has_method("collect"):
 		pass

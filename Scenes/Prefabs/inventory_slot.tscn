@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://d13r7ki00n71b"]
+
+[ext_resource type="Script" uid="uid://b2uo86vk5c5uo" path="res://Scripts/Inventory/inventory_slot.gd" id="1_e80d3"]
+[ext_resource type="Texture2D" uid="uid://bp7k1j3gak8rf" path="res://Assets/Ninja Adventure - Asset Pack/Items/Potion/LifePot.png" id="2_re80x"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="3_30uwa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1pkt"]
+
+[node name="InventorySlot" type="Control"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+script = ExtResource("1_e80d3")
+
+[node name="OuterBorder" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="InnerBorder" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.611765, 0.603922, 0.584314, 1)
+
+[node name="ItemIcon" type="Sprite2D" parent="InnerBorder"]
+position = Vector2(50, 51)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_re80x")
+
+[node name="ItemQuantity" type="Label" parent="InnerBorder"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 50
+text = "1"
+
+[node name="ItemButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r1pkt")
+
+[node name="DetailsPanel" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(240, 130)
+layout_mode = 0
+offset_left = 113.0
+offset_top = 1.0
+offset_right = 353.0
+offset_bottom = 131.0
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="ItemName" type="Label" parent="DetailsPanel"]
+layout_mode = 1
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 40
+text = "name"
+
+[node name="ItemType" type="Label" parent="DetailsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -11.5
+offset_right = 45.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 0.784314)
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 40
+text = "type"
+
+[node name="ItemEffect" type="Label" parent="DetailsPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 45.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 0.588235)
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 40
+text = "effect"
+
+[node name="UsagePanel" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -158.0
+offset_top = -9.0
+offset_right = -14.0
+offset_bottom = 93.0
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="UseButton" type="Button" parent="UsagePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 40
+text = "Use"
+
+[node name="DropButton" type="Button" parent="UsagePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -49.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_30uwa")
+theme_override_font_sizes/font_size = 40
+text = "Drop"
+
+[connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="UsagePanel/DropButton" to="." method="_on_drop_button_pressed"]

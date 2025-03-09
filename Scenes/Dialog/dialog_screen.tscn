@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bg1s2ohmpxcke"]
 
-[ext_resource type="Script" path="res://Scenes/Dialog/dialog_screen.gd" id="1_6c7u7"]
+[ext_resource type="Script" uid="uid://c5v37lwgqkf17" path="res://Scenes/Dialog/dialog_screen.gd" id="1_6c7u7"]
 [ext_resource type="Texture2D" uid="uid://ct31stmg6bf6e" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_74glq"]
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="2_fi1y2"]
 [ext_resource type="Texture2D" uid="uid://bl0oeio1wumj" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="3_2b2a1"]
