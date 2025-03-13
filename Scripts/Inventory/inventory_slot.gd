@@ -52,3 +52,12 @@ func _on_drop_button_pressed() -> void:
 		Inventory_g.drop_item(item, drop_position + drop_offset)
 		Inventory_g.remove_item(item["type"], item["effect"] )
 		usage_panel.visible = false
+
+func _on_use_button_pressed() -> void:
+	usage_panel.visible = false
+	if item != null and item["effect"] != "":
+		if Inventory_g.player_node:
+			Inventory_g.player_node.apply_item_effect(item)
+			Inventory_g.remove_item(item["type"], item["effect"] )
+		else:
+			print("Player não encontrado")

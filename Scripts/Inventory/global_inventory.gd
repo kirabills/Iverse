@@ -36,7 +36,8 @@ func  remove_item(item_type, item_effect) :
 			return true
 	return false
 
-func increase_inventory_size() -> void:
+func increase_inventory_size(extra_slot) -> void:
+	inventory.resize(inventory.size() + extra_slot)
 	inventory_updated.emit()
 
 func set_player_reference(player: Node) -> void:

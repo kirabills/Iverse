@@ -18,8 +18,8 @@ texture_normal = ExtResource("3_ystle")
 action = "inventory"
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("4_yppxs")]
-offset_left = 46.0
-offset_top = -191.0
-offset_right = 196.0
-offset_bottom = -41.0
-pressed_color = Color(0.798333, 0, 0.385858, 1)
+offset_left = 30.0
+offset_top = -226.0
+offset_right = 256.0
+offset_bottom = -2.0
+pressed_color = Color(0.287295, 0.287295, 0.287295, 1)

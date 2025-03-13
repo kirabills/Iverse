@@ -73,6 +73,20 @@ func anim_p(direction):
 				anim.play("idle_down")
 			
 
+func apply_item_effect(item):
+	match item["effect"]:
+		"Stamina":
+			SPEED += 50
+			print("Speed increased to: ", SPEED)
+		"Health":
+			if $Health.max < 100:
+				$Health.heal(3, 1)
+		"Slot Plus":
+			Inventory_g.increase_inventory_size(5)
+		
+		_:
+			print("Este item nao tem efeito")
+
 func _on_action_area_entered(_area: Area2D) -> void:
 	#if area.has_method("collect"):
 		pass
