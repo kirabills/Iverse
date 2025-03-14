@@ -1,42 +1,41 @@
 extends Node2D
 class_name Level
 
-const _DIALOG_SCREEN: PackedScene = preload("res://Scenes/Dialog/dialog_screen.tscn")
-
-@export_category("Dialogos")
-@export var _dialog_data: Dictionary = {
-
-}
 
 
-@export_category("Objetos")
-@export var _hud: CanvasLayer = null
-#@export var _player: CharacterBody2D = null
+
+@onready var items: Node2D = $Items
+@onready var item_spawn_area: Area2D = $ItemSpawnArea
+@onready var collision_shape: CollisionShape2D = $ItemSpawnArea/CollisionShape2D
+
+
 
 func  _ready() -> void:
+	spawn_random_items(10)
 	get_window().mode = Window.MODE_FULLSCREEN
 
-func _dialogo() -> void:
-	var _new_dialog: DialogScreen = _DIALOG_SCREEN.instantiate()
-	_new_dialog.data = _dialog_data
-	_hud.add_child(_new_dialog)
+func get_random_position() -> Vector2:
+	var area_rect = collision_shape.shape.get_rect()
+	var x = randf_range(0, area_rect.position.x)
+	var y = randf_range(0, area_rect.position.y)
+	return item_spawn_area.to_global(Vector2(x, y))
 	
-
-
-
-#func _on_area_2d_area_entered(area):
-#	print(area)
-#	if area == _player.get_collision_layer_value(1):
-#		var _new_dialog: DialogScreen = _DIALOG_SCREEN.instantiate()
-#		_new_dialog.data = _dialog_data
-#		_hud.add_child(_new_dialog)
-func _input(event: InputEvent) -> void:
+func spawn_random_items(count):
+	var attempts: int = 0
+	var spawned_count: int = 0
+	while  spawned_count < count and attempts < 100:
+		var positionn = get_random_position()
+		spawn_item(Inventory_g.spawnable_items[randi() % Inventory_g.spawnable_items.size()], positionn)
+		spawned_count += 1
+		attempts += 1
+		
+func spawn_item(data, positionn):
+	var item_scene = preload("res://Scenes/Prefabs/inventory_item.tscn")
+	var item_instance = item_scene.instantiate()
+	item_instance.initiate_items(data["type"], data["name"], data["effect"], data["texture"])
+	item_instance.global_position = positionn
+	items.add_child(item_instance)
+	
+func _input(event: InputEvent) -> void: #funcao para dar quit do jogo
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
-
-func _on_inventory_gui_opened():
-	get_tree().paused = true
-
-
-func _on_inventory_gui_closed():
-	get_tree().paused = false

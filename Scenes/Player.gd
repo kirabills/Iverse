@@ -12,7 +12,7 @@ class_name Player
 
 
 #onready variaveis
-@onready var interact_ui: CanvasLayer = $InteractUI
+
 @onready var inventory_ui: CanvasLayer = $InventoryUI
 # variaveis mista
 var olhando: String = ""
@@ -42,6 +42,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		inventory_ui.visible = !inventory_ui.visible
 		get_tree().paused = !get_tree().paused
+		_global.isControl = !_global.isControl
 
 func anim_p(direction):
 	if direction.length() > 0:
