@@ -11,10 +11,8 @@ script = ExtResource("1_kwehk")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-offset_left = 39.0
-offset_top = 71.0
-offset_right = 795.0
-offset_bottom = 397.0
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 10
+offset_right = 756.0
+offset_bottom = 326.0
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
 columns = 5

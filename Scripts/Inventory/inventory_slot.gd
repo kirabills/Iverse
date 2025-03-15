@@ -1,7 +1,8 @@
 extends Control
 
-@onready var icon: Sprite2D = $InnerBorder/ItemIcon
-@onready var quantity_label: Label = $InnerBorder/ItemQuantity
+@onready var icon: Sprite2D = $ItemButton/ItemIcon
+@onready var background: Sprite2D = $ItemButton/BackGround
+@onready var quantity_label: Label = $ItemButton/ItemQuantity
 @onready var details_panel: ColorRect = $DetailsPanel
 @onready var item_name: Label = $DetailsPanel/ItemName
 @onready var item_type: Label = $DetailsPanel/ItemType
@@ -31,9 +32,11 @@ func _on_item_button_mouse_exited() -> void:
 func set_empty() -> void:
 	icon.texture = null
 	quantity_label.text = ""
+	background.frame = 0
 	
 func set_item(new_item) -> void:
 	item = new_item
+	background.frame = 1
 	icon.texture = new_item["texture"]
 	quantity_label.text = str(item["quantity"])
 	item_name.text = str(item["name"])
@@ -42,7 +45,6 @@ func set_item(new_item) -> void:
 		item_effect.text = str("+ " + item["effect"])
 	else:
 		item_type.text = ""
-
 
 func _on_drop_button_pressed() -> void:
 	if item != null:

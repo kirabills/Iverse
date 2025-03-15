@@ -1,74 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://d13r7ki00n71b"]
+[gd_scene load_steps=10 format=3 uid="uid://d13r7ki00n71b"]
 
 [ext_resource type="Script" uid="uid://b2uo86vk5c5uo" path="res://Scripts/Inventory/inventory_slot.gd" id="1_e80d3"]
-[ext_resource type="Texture2D" uid="uid://bp7k1j3gak8rf" path="res://Assets/Ninja Adventure - Asset Pack/Items/Potion/LifePot.png" id="2_re80x"]
+[ext_resource type="Texture2D" uid="uid://c4jtfheqo7w60" path="res://Assets/InvenrtoryArt/inventorySlot.png" id="2_30uwa"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="3_30uwa"]
+[ext_resource type="Texture2D" uid="uid://cpsjaebpas6w4" path="res://Assets/Icons/icon1.png" id="3_r1pkt"]
+[ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="4_r1pkt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myrwu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_187ha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1v0y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1pkt"]
 
 [node name="InventorySlot" type="Control"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 80.0
-offset_bottom = 80.0
-script = ExtResource("1_e80d3")
-
-[node name="OuterBorder" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.596078, 0.933333, 0.8, 1)
-
-[node name="InnerBorder" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 35.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.611765, 0.603922, 0.584314, 1)
-
-[node name="ItemIcon" type="Sprite2D" parent="InnerBorder"]
-position = Vector2(50, 51)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_re80x")
-
-[node name="ItemQuantity" type="Label" parent="InnerBorder"]
-layout_mode = 0
-offset_left = 5.0
-offset_right = 45.0
-offset_bottom = 51.0
-theme_override_colors/font_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
-theme_override_fonts/font = ExtResource("3_30uwa")
-theme_override_font_sizes/font_size = 50
-text = "1"
+script = ExtResource("1_e80d3")
 
 [node name="ItemButton" type="Button" parent="."]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 21.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_myrwu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_187ha")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1v0y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_r1pkt")
+
+[node name="BackGround" type="Sprite2D" parent="ItemButton"]
+position = Vector2(30, 29)
+scale = Vector2(3, 2.834)
+texture = ExtResource("2_30uwa")
+vframes = 2
+
+[node name="ItemIcon" type="Sprite2D" parent="ItemButton"]
+position = Vector2(29, 29)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_r1pkt")
+
+[node name="ItemQuantity" type="Label" parent="ItemButton"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -32.0
+offset_right = -6.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_r1pkt")
+theme_override_font_sizes/font_size = 22
+text = "1"
 
 [node name="DetailsPanel" type="ColorRect" parent="."]
 visible = false
