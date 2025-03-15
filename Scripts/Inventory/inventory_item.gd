@@ -37,28 +37,17 @@ func pickup_item() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-		
 	if body.is_in_group("player"):
-		player_in_range = true
-		$BtnPegarItem.visible = true
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_in_range = false
-		$BtnPegarItem.visible = false
-		
-func _on_btn_pegar_item_pressed() -> void:
-	if player_in_range:
 		pickup_item()
 		self.queue_free()
+	#if body.is_in_group("player"):
+		#player_in_range = true
+		#body.interact_ui.visible = true
+
+
 
 func set_item_data(data):
 	item_type = data["type"]
 	item_name = data["name"]
 	item_effect = data["effect"]
 	item_texture = data["texture"]
-
-func initiate_items(type, names , effect , texture):
-	item_type = type 
-	item_name = names
-	item_effect = effect
-	item_texture = texture

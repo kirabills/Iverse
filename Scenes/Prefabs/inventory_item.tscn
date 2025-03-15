@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://i6ndjsh7s8iv"]
+[gd_scene load_steps=6 format=3 uid="uid://i6ndjsh7s8iv"]
 
 [ext_resource type="Script" uid="uid://u6aygfe4c13a" path="res://Scripts/Inventory/inventory_item.gd" id="1_bj8lj"]
-[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="2_afv3h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6b6jf"]
 
@@ -33,38 +32,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_f0u3u")
 }
 
-[node name="BtnPegarItem" type="Button" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -38.0
-offset_right = 27.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="BtnPegarItem"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -5.0
-offset_right = 23.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_afv3h")
-theme_override_font_sizes/font_size = 9
-text = "Pegar  Item"
-horizontal_alignment = 1
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="BtnPegarItem" to="." method="_on_btn_pegar_item_pressed"]

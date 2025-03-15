@@ -48,7 +48,7 @@ color = Color(0.611765, 0.603922, 0.584314, 1)
 
 [node name="ItemIcon" type="Sprite2D" parent="InnerBorder"]
 position = Vector2(50, 51)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_re80x")
 
 [node name="ItemQuantity" type="Label" parent="InnerBorder"]
