@@ -22,7 +22,7 @@ sources/0 = SubResource("TileSetAtlasSource_ueawt")
 radius = 13.9284
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqgf2"]
-size = Vector2(1500, 1500)
+size = Vector2(1453, 1498)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_hwrjd")
@@ -122,7 +122,7 @@ parameters/looping = true
 [node name="Items" type="Node2D" parent="."]
 
 [node name="ItemSpawnArea" type="Area2D" parent="."]
-position = Vector2(1249, 899)
+position = Vector2(188, 267)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawnArea"]
 shape = SubResource("RectangleShape2D_oqgf2")
