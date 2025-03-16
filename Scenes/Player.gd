@@ -79,8 +79,7 @@ func apply_item_effect(item):
 			SPEED += 50
 			print("Speed increased to: ", SPEED)
 		"Health":
-			if $Health.max < 100:
-				$Health.heal(3, 1)
+			pass
 		"Slot Plus":
 			Inventory_g.increase_inventory_size(5)
 		

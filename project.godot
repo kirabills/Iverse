@@ -29,6 +29,7 @@ window/size/resizable=false
 window/size/window_width_override=1440
 window/size/window_height_override=2560
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

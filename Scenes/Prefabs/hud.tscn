@@ -12,7 +12,7 @@ script = ExtResource("1_vl57a")
 
 [node name="InventoryButton" type="TouchScreenButton" parent="Mobile"]
 z_index = 10
-position = Vector2(801, 9)
+position = Vector2(806, 10)
 scale = Vector2(0.191388, 0.142857)
 texture_normal = ExtResource("3_ystle")
 action = "inventory"
