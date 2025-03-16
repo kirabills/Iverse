@@ -35,6 +35,7 @@ func add_item(item):
 func  remove_item(item_type, item_effect) :
 	for i in range(inventory.size()):
 		if inventory[i] != null and inventory[i]["type"] == item_type and  inventory[i]["effect"] ==  item_effect:
+			if inventory[i]["effect"] == "Health" and  Inventory_g.player_node.Life_current >= Inventory_g.player_node.life_max: return
 			inventory[i]["quantity"] -= 1
 			if inventory[i]["quantity"] <= 0:
 				inventory[i] = null

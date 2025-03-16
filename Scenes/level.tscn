@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dlso6ngcah5un"]
+[gd_scene load_steps=17 format=4 uid="uid://dlso6ngcah5un"]
 
 [ext_resource type="Script" uid="uid://ddcsa7kg7sigv" path="res://Scenes/level.gd" id="1_hwrjd"]
 [ext_resource type="Texture2D" uid="uid://cjngyku3cbcw8" path="res://Assets/sprites/tilesets/grass.png" id="2_7nnq8"]
@@ -10,6 +10,7 @@
 [ext_resource type="TileSet" uid="uid://c8hus2w00uhpo" path="res://Scenes/Prefabs/dugeon_tile.tres" id="7_14ovi"]
 [ext_resource type="PackedScene" uid="uid://boavrpsmwi2di" path="res://Scenes/Prefabs/hud.tscn" id="8_tapeh"]
 [ext_resource type="AudioStream" uid="uid://upbieh0lat6v" path="res://Assets/Ninja Adventure - Asset Pack/Musics/13 - Mystical.ogg" id="9_tp3l8"]
+[ext_resource type="Texture2D" uid="uid://duph25b7gqkwk" path="res://Assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword/Sword Icons/Swordtember_21.png" id="11_qxfql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueawt"]
 texture = ExtResource("2_7nnq8")
@@ -23,6 +24,8 @@ radius = 13.9284
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqgf2"]
 size = Vector2(1453, 1498)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha31o"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_hwrjd")
@@ -127,4 +130,16 @@ position = Vector2(1289, 567)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawnArea"]
 shape = SubResource("RectangleShape2D_oqgf2")
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-5, -53)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("11_qxfql")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_ha31o")
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
