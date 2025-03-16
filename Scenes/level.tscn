@@ -122,7 +122,7 @@ parameters/looping = true
 [node name="Items" type="Node2D" parent="."]
 
 [node name="ItemSpawnArea" type="Area2D" parent="."]
-position = Vector2(188, 267)
+position = Vector2(1289, 567)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawnArea"]
 shape = SubResource("RectangleShape2D_oqgf2")

@@ -12,7 +12,7 @@ class_name Player
 
 
 #onready variaveis
-@onready var interact_ui: CanvasLayer = $InteractUI
+
 @onready var inventory_ui: CanvasLayer = $InventoryUI
 # variaveis mista
 var olhando: String = ""

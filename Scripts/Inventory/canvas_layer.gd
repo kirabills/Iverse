@@ -8,7 +8,3 @@ func _ready() -> void:
 		$Mobile.visible = true
 	else:
 		$Mobile.visible = false
-
-func _input(event) -> void:
-	if event.is_action_pressed("inventory"):
-		pass

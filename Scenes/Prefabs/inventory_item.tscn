@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://i6ndjsh7s8iv"]
+[gd_scene load_steps=14 format=3 uid="uid://i6ndjsh7s8iv"]
 
 [ext_resource type="Script" uid="uid://u6aygfe4c13a" path="res://Scripts/Inventory/inventory_item.gd" id="1_bj8lj"]
+[ext_resource type="Texture2D" uid="uid://bwkh3ribf43kn" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_hover.png" id="2_f0u3u"]
+[ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="2_pxqq8"]
+[ext_resource type="Texture2D" uid="uid://duhyptkq6ohta" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_pressed.png" id="3_pxqq8"]
+[ext_resource type="Texture2D" uid="uid://bxlbohlyn6dx8" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_normal.png" id="4_kxchm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6b6jf"]
 
@@ -17,6 +21,17 @@ _data = {
 &"explosion": SubResource("Animation_afv3h")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21v0w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ia36"]
+texture = ExtResource("2_f0u3u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jaj15"]
+texture = ExtResource("3_pxqq8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b5kl"]
+texture = ExtResource("4_kxchm")
+
 [node name="Inventory_item" type="Node2D" groups=["Items"]]
 script = ExtResource("1_bj8lj")
 
@@ -32,4 +47,21 @@ libraries = {
 &"": SubResource("AnimationLibrary_f0u3u")
 }
 
+[node name="BtnPegarItem" type="Button" parent="."]
+visible = false
+z_index = 16
+offset_left = -44.0
+offset_top = -42.0
+offset_right = 48.0
+offset_bottom = -12.0
+theme_override_fonts/font = ExtResource("2_pxqq8")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_21v0w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ia36")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jaj15")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0b5kl")
+text = "Pegar Item"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="BtnPegarItem" to="." method="_on_btn_pegar_item_pressed"]
