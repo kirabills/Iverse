@@ -12,6 +12,7 @@ extends Control
 @onready var assignButton: Button = $UsagePanel/AssignButton
 
 var slot_index : int = -1
+var isHotbar: bool = false
 
 var itemHealhBlock: Array = [
 	"Health",
@@ -23,15 +24,20 @@ var itemManaBlock: Array = [
 ]
 
 var item = null
-
+var isAssingned: bool = false
 #set index
 func set_slot_index(new_index):
 	slot_index = new_index
 
 func _on_item_button_pressed() -> void:
 	if item != null:
-		usage_panel.visible = !usage_panel.visible
-	
+		if not isHotbar:
+			usage_panel.visible = !usage_panel.visible
+			return
+		if isHotbar:
+			use_hotbar_pressed()
+				
+		Inventory_g.inventory_updated.emit()
 
 func _on_item_button_mouse_entered() -> void:
 	
@@ -63,6 +69,7 @@ func set_item(new_item) -> void:
 		item_effect.text = str("+ " + item["effect"])
 	else:
 		item_type.text = ""
+	update_assigment_status()
 
 func _on_drop_button_pressed() -> void:
 	if item != null:
@@ -74,17 +81,41 @@ func _on_drop_button_pressed() -> void:
 		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		usage_panel.visible = false
 
-func _on_use_button_pressed() -> void:
-	usage_panel.visible = false
-	if item != null and item["effect"] != "":
-		if item["effect"] in itemHealhBlock  and  Inventory_g.player_node.isFull(): return
-		if item["effect"] in itemManaBlock and Inventory_g.player_node.manaIsFull(): return
-		if Inventory_g.player_node:
-			Inventory_g.player_node.apply_item_effect(item)
-			Inventory_g.remove_item(item["type"], item["effect"] )
-		else:
-			print("Player não encontrado")
+#func _on_use_button_pressed() -> void:
+	#usage_panel.visible = false
+	##if item != null and item["effect"] != "":
+		##if item["effect"] in itemHealhBlock  and  Inventory_g.player_node.isFull(): return
+		##if item["effect"] in itemManaBlock and Inventory_g.player_node.manaIsFull(): return
+		##if Inventory_g.player_node:
+			##Inventory_g.player_node.apply_item_effect(item)
+			##Inventory_g.remove_item(item["type"], item["effect"] )
+		##else:
+			#print("Player não encontrado")
+
+func update_assigment_status():
+	isAssingned = Inventory_g.is_item_assign_to_hotbar(item)
+	if isAssingned:
+		assignButton.text = "Desvincular"
+	else:
+		assignButton.text = "Equipar"
 
 
 func _on_assign_button_pressed() -> void:
-	pass # Replace with function body.
+	if item != null:
+		if isAssingned:
+			Inventory_g.unnassign_hotbar_item(item["type"], item["effect"])
+			isAssingned = false
+		else:
+			Inventory_g.add_item(item, true)
+			isAssingned = true
+		update_assigment_status()
+
+func use_hotbar_pressed():
+	if item["effect"] in itemHealhBlock  and  Inventory_g.player_node.isFull(): return
+	if item["effect"] in itemManaBlock and Inventory_g.player_node.manaIsFull(): return
+	Inventory_g.player_node.apply_item_effect(item)
+	item["quantity"] -= 1
+	if item["quantity"] <= 0:
+		Inventory_g.remove_item(item["type"], item["effect"])
+		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
+		item = null

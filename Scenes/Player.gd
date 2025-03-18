@@ -176,3 +176,22 @@ func _on_attack_timer_timeout() -> void:
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		body.isDead = true
+
+func use_hotbar_item(slot_index):
+	if slot_index < Inventory_g.hotbar.size():
+		var item = Inventory_g.hotbar[slot_index]
+		if item != null:
+			apply_item_effect(item)
+			item["quantity"] -= 1
+			if item["quantity"] <= 0:
+				Inventory_g.hotbar[slot_index] = null
+				Inventory_g.remove_item(item["type"], item["effect"])
+		Inventory_g.inventory_updated.emit()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed():
+		for i in range(Inventory_g.hotbar_size ):
+			if Input.is_action_just_pressed("hotbar_" + str(i + 1)):
+				use_hotbar_item(i)
+				break
+				

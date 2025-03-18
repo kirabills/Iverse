@@ -94,7 +94,7 @@ func remove_hotbar_item(item_type, item_effect):
 	for i in range(hotbar.size()):
 		if hotbar[i] != null and hotbar[i]["type"] == item_type and hotbar[i]["effect"] == item_effect:
 			if hotbar[i]["quantity"] <= 0:
-				hotbar[i]["quantity"] = null
+				hotbar[i] = null
 			inventory_updated.emit()
 			return true
 	return false
@@ -107,3 +107,8 @@ func unnassign_hotbar_item(item_type, item_effect):
 			inventory_updated.emit()
 			return true
 	return false
+
+#previne duplicatas item de atalho
+func is_item_assign_to_hotbar(item_to_check):
+	return item_to_check in hotbar
+	
