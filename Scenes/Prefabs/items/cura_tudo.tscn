@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brt0saqnolngw"]
+
+[ext_resource type="PackedScene" uid="uid://i6ndjsh7s8iv" path="res://Scenes/Prefabs/inventory_item.tscn" id="1_rg7px"]
+[ext_resource type="Texture2D" uid="uid://cpsjaebpas6w4" path="res://Assets/Icons/icon1.png" id="2_8ugpx"]
+
+[node name="CuraTudo" instance=ExtResource("1_rg7px")]
+item_type = "Consumivel"
+item_name = "Cura Tudo"
+item_texture = ExtResource("2_8ugpx")
+item_effect = "Cura Tudo"
+size = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_8ugpx")

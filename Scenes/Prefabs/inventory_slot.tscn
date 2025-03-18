@@ -47,6 +47,7 @@ vframes = 2
 
 [node name="ItemIcon" type="Sprite2D" parent="ItemButton"]
 position = Vector2(29, 28)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_r1pkt")
 
 [node name="ItemQuantity" type="Label" parent="ItemButton"]

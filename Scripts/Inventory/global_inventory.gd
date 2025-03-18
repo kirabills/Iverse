@@ -5,11 +5,12 @@ var inventory: Array
 
 signal inventory_updated
 
-var spawnable_items: Array = [
-	{"type": "Consumable", "name": "Berry", "effect": "Health", "texture": preload("res://Assets/Icons/icon31.png")},
-	{"type": "Consumable", "name": "Water", "effect": "Stamina", "texture": preload("res://Assets/Icons/icon9.png")},
-	{"type": "Consumable", "name": "Mushroom", "effect": "Armor", "texture": preload("res://Assets/Icons/icon32.png")},
-	{"type": "Gift", "name": "Gemstone", "effect": "", "texture": preload("res://Assets/Icons/icon21.png")},
+var spawnable_items: Array[PackedScene] = [
+	load("res://Scenes/Prefabs/items/milk.tscn"),
+	load("res://Scenes/Prefabs/items/potion.tscn"),
+	load("res://Scenes/Prefabs/items/elixir.tscn"),
+	load("res://Scenes/Prefabs/items/elixir_de_mana.tscn"),
+	load("res://Scenes/Prefabs/items/cura_tudo.tscn")
 ]
 
 var player_node: Node = null
@@ -35,7 +36,6 @@ func add_item(item):
 func  remove_item(item_type, item_effect) :
 	for i in range(inventory.size()):
 		if inventory[i] != null and inventory[i]["type"] == item_type and  inventory[i]["effect"] ==  item_effect:
-			if inventory[i]["effect"] == "Health" and  Inventory_g.player_node.Life_current >= Inventory_g.player_node.life_max: return
 			inventory[i]["quantity"] -= 1
 			if inventory[i]["quantity"] <= 0:
 				inventory[i] = null

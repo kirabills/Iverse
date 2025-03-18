@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwm0tyhtat8av"]
+
+[ext_resource type="PackedScene" uid="uid://i6ndjsh7s8iv" path="res://Scenes/Prefabs/inventory_item.tscn" id="1_g4138"]
+[ext_resource type="Texture2D" uid="uid://bv4opui6t7m7a" path="res://Assets/Icons/icon9.png" id="2_gq177"]
+
+[node name="Elixir" instance=ExtResource("1_g4138")]
+item_type = "Consumivel"
+item_name = "Elixir"
+item_texture = ExtResource("2_gq177")
+item_effect = "Health Full"
+size = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_gq177")

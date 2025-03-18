@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2suwt5afjrou"]
+
+[ext_resource type="PackedScene" uid="uid://i6ndjsh7s8iv" path="res://Scenes/Prefabs/inventory_item.tscn" id="1_517vm"]
+[ext_resource type="Texture2D" uid="uid://bdi600ohf3wsg" path="res://Assets/Icons/icon4.png" id="2_aarvw"]
+
+[node name="ElixirDeMana" instance=ExtResource("1_517vm")]
+item_type = "Consumiveel"
+item_name = "Elixir de Mana"
+item_texture = ExtResource("2_aarvw")
+item_effect = "Mana Full"
+size = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_aarvw")

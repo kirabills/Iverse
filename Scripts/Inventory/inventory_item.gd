@@ -6,6 +6,7 @@ extends Node2D
 @export var item_name: String
 @export var item_texture: Texture
 @export var item_effect: String
+@export var size: float
 var scene_path = "res://Scenes/Prefabs/inventory_item.tscn"
 
 #Referencias de no na arvore
@@ -20,8 +21,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		icon_sprite.texture = item_texture
-	if player_in_range and Input.is_action_just_pressed("ui_add"):
-		pickup_item()
+	
 func pickup_item() -> void:
 	var item = {
 		"quantity" : 1,
@@ -30,6 +30,7 @@ func pickup_item() -> void:
 		"effect" : item_effect,
 		"texture" : item_texture,
 		"scene_path" : scene_path,
+		"size_texture": size,
 	}
 	if Inventory_g.player_node:
 		Inventory_g.add_item(item)
@@ -56,6 +57,7 @@ func set_item_data(data):
 	item_name = data["name"]
 	item_effect = data["effect"]
 	item_texture = data["texture"]
+	size = data["size_texture"]
 
 func initiate_items(type, names , effect , texture):
 	item_type = type 

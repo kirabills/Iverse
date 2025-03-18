@@ -34,6 +34,7 @@ texture = ExtResource("4_kxchm")
 
 [node name="Inventory_item" type="Node2D" groups=["Items"]]
 script = ExtResource("1_bj8lj")
+size = null
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -24,14 +24,15 @@ func spawn_random_items(count):
 	var spawned_count: int = 0
 	while  spawned_count < count and attempts < 100:
 		var positionn = get_random_position()
-		spawn_item(Inventory_g.spawnable_items[randi() % Inventory_g.spawnable_items.size()], positionn)
+		var index = randi() % Inventory_g.spawnable_items.size()
+		spawn_item(index, positionn)
 		spawned_count += 1
 		attempts += 1
 		
-func spawn_item(data, positionn):
-	var item_scene = preload("res://Scenes/Prefabs/inventory_item.tscn")
-	var item_instance = item_scene.instantiate()
-	item_instance.initiate_items(data["type"], data["name"], data["effect"], data["texture"])
+func spawn_item(data: int, positionn):
+	var scene_path: Array = Inventory_g.spawnable_items
+	var item_instance = scene_path[data].instantiate()
+	#item_instance.initiate_items(data["type"], data["name"], data["effect"], data["texture"])
 	item_instance.global_position = positionn
 	items.add_child(item_instance)
 	
@@ -50,3 +51,4 @@ func _on_inventory_gui_closed():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.damage(3 , 2)
+		body.cost_mana(3, 2)

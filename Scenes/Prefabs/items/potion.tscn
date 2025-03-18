@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8kdi5mmjj1ot"]
+
+[ext_resource type="PackedScene" uid="uid://i6ndjsh7s8iv" path="res://Scenes/Prefabs/inventory_item.tscn" id="1_oncjb"]
+[ext_resource type="Texture2D" uid="uid://br6h7514itwa3" path="res://Assets/Icons/icon2.png" id="2_cpnft"]
+
+[node name="Inventory_item" instance=ExtResource("1_oncjb")]
+item_type = "Health"
+item_name = "Potion"
+item_texture = ExtResource("2_cpnft")
+item_effect = "Heatlh"
+size = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cpnft")

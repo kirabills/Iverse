@@ -1,31 +1,73 @@
-[gd_scene load_steps=7 format=3 uid="uid://boavrpsmwi2di"]
+[gd_scene load_steps=9 format=3 uid="uid://boavrpsmwi2di"]
 
 [ext_resource type="Script" uid="uid://b1idtg5fgjavy" path="res://Scripts/Inventory/canvas_layer.gd" id="1_vl57a"]
+[ext_resource type="Texture2D" uid="uid://bmmp8rl4w0qgo" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/slider_progress.png" id="3_8bnre"]
 [ext_resource type="Texture2D" uid="uid://cdsffh7pjsbbr" path="res://Assets/UI/Icons/150ppp/UI NUEVA-09.png" id="3_ystle"]
 [ext_resource type="Texture2D" uid="uid://ce2vt5pe4kdrx" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarUnder.png" id="4_1qlnu"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_yppxs"]
 [ext_resource type="Texture2D" uid="uid://d3edx6kl7taph" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarProgress.png" id="5_0d6x4"]
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="6_0d6x4"]
+[ext_resource type="Texture2D" uid="uid://curyj3bq2gtqq" path="res://Assets/UI/ManabarProgress.png" id="7_h05n4"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_vl57a")
+metadata/_edit_vertical_guides_ = [282.0]
 
-[node name="Mobile" type="Node2D" parent="."]
+[node name="Mobile" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="InventoryButton" type="TouchScreenButton" parent="Mobile"]
+[node name="Virtual Joystick" parent="Mobile" instance=ExtResource("4_yppxs")]
+layout_mode = 1
+offset_left = 100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = -50.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+pressed_color = Color(0.287295, 0.287295, 0.287295, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="Mobile"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -140.0
+offset_right = -23.0
+offset_bottom = -53.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Attack" type="TouchScreenButton" parent="Mobile/BoxContainer"]
 z_index = 10
-position = Vector2(806, 10)
+scale = Vector2(5.93751, 5.5625)
+texture_normal = ExtResource("3_8bnre")
+action = "attack"
+
+[node name="BoxContainer2" type="BoxContainer" parent="Mobile"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 42.0
+grow_horizontal = 0
+
+[node name="InventoryButton" type="TouchScreenButton" parent="Mobile/BoxContainer2"]
+z_index = 10
 scale = Vector2(0.191388, 0.142857)
 texture_normal = ExtResource("3_ystle")
 action = "inventory"
-
-[node name="Virtual Joystick" parent="Mobile" instance=ExtResource("4_yppxs")]
-offset_left = 30.0
-offset_top = 254.0
-offset_right = 256.0
-offset_bottom = 478.0
-pressed_color = Color(0.287295, 0.287295, 0.287295, 1)
 
 [node name="ProgressHp" type="TextureProgressBar" parent="."]
 offset_left = 21.0
@@ -41,6 +83,38 @@ texture_under = ExtResource("4_1qlnu")
 texture_progress = ExtResource("5_0d6x4")
 
 [node name="txt_hp" type="Label" parent="ProgressHp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -8.0
+offset_right = 7.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_0d6x4")
+theme_override_font_sizes/font_size = 16
+text = "0%"
+
+[node name="ProgressMana" type="TextureProgressBar" parent="."]
+offset_left = 62.0
+offset_top = 45.0
+offset_right = 282.0
+offset_bottom = 71.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("4_1qlnu")
+texture_progress = ExtResource("7_h05n4")
+
+[node name="txt_mana" type="Label" parent="ProgressMana"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

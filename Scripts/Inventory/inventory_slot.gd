@@ -10,6 +10,15 @@ extends Control
 @onready var usage_panel: ColorRect = $UsagePanel
 @onready var inventory_ui =  preload("res://Scenes/Prefabs/Inventotory_ui.tscn")
 
+var itemHealhBlock: Array = [
+	"Health",
+	"Health Full",
+]
+var itemManaBlock: Array = [
+	"Mana",
+	"Mana Full",
+]
+
 var item = null
 func _on_item_button_pressed() -> void:
 	if item != null:
@@ -38,6 +47,7 @@ func set_item(new_item) -> void:
 	item = new_item
 	background.frame = 1
 	icon.texture = new_item["texture"]
+	icon.scale = Vector2(item["size_texture"], item["size_texture"])
 	quantity_label.text = str(item["quantity"])
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])
@@ -58,6 +68,8 @@ func _on_drop_button_pressed() -> void:
 func _on_use_button_pressed() -> void:
 	usage_panel.visible = false
 	if item != null and item["effect"] != "":
+		if item["effect"] in itemHealhBlock  and  Inventory_g.player_node.isFull(): return
+		if item["effect"] in itemManaBlock and Inventory_g.player_node.manaIsFull(): return
 		if Inventory_g.player_node:
 			Inventory_g.player_node.apply_item_effect(item)
 			Inventory_g.remove_item(item["type"], item["effect"] )
