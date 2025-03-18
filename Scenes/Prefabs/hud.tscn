@@ -9,31 +9,21 @@
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="6_0d6x4"]
 [ext_resource type="Texture2D" uid="uid://curyj3bq2gtqq" path="res://Assets/UI/ManabarProgress.png" id="7_h05n4"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("Mobile")]
 process_mode = 3
 script = ExtResource("1_vl57a")
-metadata/_edit_vertical_guides_ = [282.0]
+Mobile = [NodePath("Virtual Joystick"), NodePath("BoxContainer"), NodePath("BoxContainer2")]
 
-[node name="Mobile" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Virtual Joystick" parent="Mobile" instance=ExtResource("4_yppxs")]
-layout_mode = 1
-offset_left = 100.0
-offset_top = -50.0
-offset_right = 100.0
-offset_bottom = -50.0
+[node name="Virtual Joystick" parent="." instance=ExtResource("4_yppxs")]
+offset_left = 28.0
+offset_top = -206.0
+offset_right = 221.0
+offset_bottom = -35.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 pressed_color = Color(0.287295, 0.287295, 0.287295, 1)
 
-[node name="BoxContainer" type="BoxContainer" parent="Mobile"]
-layout_mode = 1
+[node name="BoxContainer" type="BoxContainer" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -46,24 +36,23 @@ offset_bottom = -53.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Attack" type="TouchScreenButton" parent="Mobile/BoxContainer"]
+[node name="Attack" type="TouchScreenButton" parent="BoxContainer"]
 z_index = 10
 scale = Vector2(5.93751, 5.5625)
 texture_normal = ExtResource("3_8bnre")
 action = "attack"
 
-[node name="BoxContainer2" type="BoxContainer" parent="Mobile"]
-layout_mode = 1
+[node name="BoxContainer2" type="BoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -62.0
-offset_top = 10.0
-offset_right = -20.0
-offset_bottom = 42.0
+offset_left = -54.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 36.0
 grow_horizontal = 0
 
-[node name="InventoryButton" type="TouchScreenButton" parent="Mobile/BoxContainer2"]
+[node name="InventoryButton" type="TouchScreenButton" parent="BoxContainer2"]
 z_index = 10
 scale = Vector2(0.191388, 0.142857)
 texture_normal = ExtResource("3_ystle")

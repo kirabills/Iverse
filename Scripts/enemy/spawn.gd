@@ -3,7 +3,7 @@ class_name Spawn
 
 @export var enemy: Array[PackedScene] = [null]
 @export var count_spawn: int = 5  # Número máximo de slimes a serem spawnados
-@export var spawn_interval: float = 2.0  # Intervalo de tempo entre spawns
+@export var spawn_interval: float = 5  # Intervalo de tempo entre spawns
 
 var count = 0  # Contador de slimes spawnados
 

@@ -9,8 +9,10 @@ extends Node2D
 @export var size: float
 var scene_path = "res://Scenes/Prefabs/inventory_item.tscn"
 
+
 #Referencias de no na arvore
 @onready var icon_sprite = $Sprite2D
+@onready var interact: TextureButton = $BtnPegarItem
 
 var player_in_range: bool = false
 
@@ -33,19 +35,19 @@ func pickup_item() -> void:
 		"size_texture": size,
 	}
 	if Inventory_g.player_node:
-		Inventory_g.add_item(item)
+		Inventory_g.add_item(item, false)
 		
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
-		$BtnPegarItem.visible = true
+		interact.visible = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = false
-		$BtnPegarItem.visible = false
+		interact.visible = false
 		
 func _on_btn_pegar_item_pressed() -> void:
 	if player_in_range:

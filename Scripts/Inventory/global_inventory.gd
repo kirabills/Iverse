@@ -17,21 +17,32 @@ var player_node: Node = null
 var usage_open: bool = false
 @onready var inventory_slot_scene: PackedScene = preload("res://Scenes/Prefabs/inventory_slot.tscn")
 
+var hotbar_size: int = 5
+var hotbar: Array
+
 func _ready() -> void:
 	
 	inventory.resize(20)
+	hotbar.resize(hotbar_size)
 
 
-func add_item(item):
-	for i in range(inventory.size()):
-		if inventory[i] != null and inventory[i]["type"] == item["type"] and  inventory[i]["effect"] == item["effect"]:
-				inventory[i]["quantity"] += item["quantity"]
+func add_item(item, to_hotbar = false):
+	var added_to_hot_bar = false
+	#Adiciona a hotbar
+	if to_hotbar:
+		added_to_hot_bar = add_hotbar_item(item)
+		Inventory_g.inventory_updated.emit()
+	#Adiciona ao inventario
+	if not added_to_hot_bar:
+		for i in range(inventory.size()):
+			if inventory[i] != null and inventory[i]["type"] == item["type"] and  inventory[i]["effect"] == item["effect"]:
+					inventory[i]["quantity"] += item["quantity"]
+					inventory_updated.emit()
+					return true
+			elif inventory[i] == null:
+				inventory[i] = item
 				inventory_updated.emit()
 				return true
-		elif inventory[i] == null:
-			inventory[i] = item
-			inventory_updated.emit()
-			return true
 	
 func  remove_item(item_type, item_effect) :
 	for i in range(inventory.size()):
@@ -70,3 +81,29 @@ func drop_item(item_data, drop_position):
 	item_instance.global_position = drop_position
 	get_tree().current_scene.add_child(item_instance)
 	
+#adiciona o item a hot bar
+func add_hotbar_item(item):
+	for i in range(hotbar.size()):
+		if hotbar[i] == null:
+			hotbar[i] = item
+			return true
+	return false
+
+#remove o item da hotbar
+func remove_hotbar_item(item_type, item_effect):
+	for i in range(hotbar.size()):
+		if hotbar[i] != null and hotbar[i]["type"] == item_type and hotbar[i]["effect"] == item_effect:
+			if hotbar[i]["quantity"] <= 0:
+				hotbar[i]["quantity"] = null
+			inventory_updated.emit()
+			return true
+	return false
+
+#coloca o item de volta ao inventario
+func unnassign_hotbar_item(item_type, item_effect):
+	for i in range(hotbar.size()):
+		if hotbar[i] != null and hotbar[i]["type"] == item_type and hotbar[i]["effect"] == item_effect:
+			hotbar[i] = null
+			inventory_updated.emit()
+			return true
+	return false

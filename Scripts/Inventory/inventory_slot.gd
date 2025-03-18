@@ -9,6 +9,9 @@ extends Control
 @onready var item_effect: Label = $DetailsPanel/ItemEffect
 @onready var usage_panel: ColorRect = $UsagePanel
 @onready var inventory_ui =  preload("res://Scenes/Prefabs/Inventotory_ui.tscn")
+@onready var assignButton: Button = $UsagePanel/AssignButton
+
+var slot_index : int = -1
 
 var itemHealhBlock: Array = [
 	"Health",
@@ -20,6 +23,11 @@ var itemManaBlock: Array = [
 ]
 
 var item = null
+
+#set index
+func set_slot_index(new_index):
+	slot_index = new_index
+
 func _on_item_button_pressed() -> void:
 	if item != null:
 		usage_panel.visible = !usage_panel.visible
@@ -63,6 +71,7 @@ func _on_drop_button_pressed() -> void:
 		drop_offset = drop_offset.rotated( Inventory_g.player_node.rotation)
 		Inventory_g.drop_item(item, drop_position + drop_offset)
 		Inventory_g.remove_item(item["type"], item["effect"] )
+		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		usage_panel.visible = false
 
 func _on_use_button_pressed() -> void:
@@ -75,3 +84,7 @@ func _on_use_button_pressed() -> void:
 			Inventory_g.remove_item(item["type"], item["effect"] )
 		else:
 			print("Player não encontrado")
+
+
+func _on_assign_button_pressed() -> void:
+	pass # Replace with function body.

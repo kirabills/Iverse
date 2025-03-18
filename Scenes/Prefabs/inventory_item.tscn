@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://i6ndjsh7s8iv"]
+[gd_scene load_steps=10 format=3 uid="uid://i6ndjsh7s8iv"]
 
 [ext_resource type="Script" uid="uid://u6aygfe4c13a" path="res://Scripts/Inventory/inventory_item.gd" id="1_bj8lj"]
 [ext_resource type="Texture2D" uid="uid://bwkh3ribf43kn" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_hover.png" id="2_f0u3u"]
@@ -21,20 +21,8 @@ _data = {
 &"explosion": SubResource("Animation_afv3h")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21v0w"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ia36"]
-texture = ExtResource("2_f0u3u")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jaj15"]
-texture = ExtResource("3_pxqq8")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b5kl"]
-texture = ExtResource("4_kxchm")
-
 [node name="Inventory_item" type="Node2D" groups=["Items"]]
 script = ExtResource("1_bj8lj")
-size = null
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -48,19 +36,35 @@ libraries = {
 &"": SubResource("AnimationLibrary_f0u3u")
 }
 
-[node name="BtnPegarItem" type="Button" parent="."]
+[node name="BtnPegarItem" type="TextureButton" parent="."]
 visible = false
 z_index = 16
+texture_filter = 1
 offset_left = -44.0
 offset_top = -42.0
 offset_right = 48.0
 offset_bottom = -12.0
+theme_type_variation = &"yts"
+texture_normal = ExtResource("4_kxchm")
+texture_pressed = ExtResource("3_pxqq8")
+texture_hover = ExtResource("2_f0u3u")
+stretch_mode = 0
+
+[node name="Pegartxt" type="Label" parent="BtnPegarItem"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -8.0
+offset_right = 32.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_pxqq8")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_21v0w")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1ia36")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_jaj15")
-theme_override_styles/normal = SubResource("StyleBoxTexture_0b5kl")
 text = "Pegar Item"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

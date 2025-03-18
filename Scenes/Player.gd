@@ -22,6 +22,7 @@ signal updatedHP
 #onready variaveis
 
 @onready var inventory_ui: CanvasLayer = $InventoryUI
+@onready var inventory_hotbar = $HotBar/InventoryHorBar
 # variaveis mista
 var olhando: String = ""
 var isCoolDown: bool = false
@@ -43,6 +44,7 @@ func _physics_process(_delta):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		inventory_ui.visible = !inventory_ui.visible
+		inventory_hotbar.visible = !inventory_hotbar.visible
 		_global.isControl = !_global.isControl
 		get_tree().paused = !get_tree().paused
 	if event.is_action_pressed("ui_select"):
