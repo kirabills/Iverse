@@ -1,6 +1,64 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgv2683sr35lu"]
+[gd_scene load_steps=16 format=3 uid="uid://dgv2683sr35lu"]
 
 [ext_resource type="Script" uid="uid://cpt7nh8k5iw5h" path="res://Scripts/Inventory/inventotory_ui.gd" id="1_kwehk"]
+[ext_resource type="Texture2D" uid="uid://cd08or2wm7c0s" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/nine_path_panel.png" id="2_3tewg"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="2_elspp"]
+[ext_resource type="Texture2D" uid="uid://bwkh3ribf43kn" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_hover.png" id="3_3x3oi"]
+[ext_resource type="Texture2D" uid="uid://gqcjdgctmhg0" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_disabled.png" id="3_xkwrr"]
+[ext_resource type="Texture2D" uid="uid://duhyptkq6ohta" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_pressed.png" id="4_a5kxv"]
+[ext_resource type="Texture2D" uid="uid://bxlbohlyn6dx8" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_normal.png" id="5_a5kxv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpubc"]
+texture = ExtResource("3_xkwrr")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xkwrr"]
+texture = ExtResource("3_3x3oi")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3tewg"]
+texture = ExtResource("4_a5kxv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3stt8"]
+texture = ExtResource("5_a5kxv")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rngi4"]
+texture = ExtResource("3_xkwrr")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q26c0"]
+texture = ExtResource("3_3x3oi")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vfgc0"]
+texture = ExtResource("4_a5kxv")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nuhae"]
+texture = ExtResource("5_a5kxv")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 
 [node name="Inventotory_UI" type="Control"]
 layout_mode = 3
@@ -16,3 +74,66 @@ offset_bottom = 326.0
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 25
 columns = 5
+
+[node name="UsagePanel" type="NinePatchRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 351.0
+offset_top = 131.0
+offset_right = 552.0
+offset_bottom = 274.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_3tewg")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="DropButton" type="Button" parent="UsagePanel"]
+custom_minimum_size = Vector2(158, 49)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.5
+offset_top = -66.0
+offset_right = 79.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_elspp")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/disabled = SubResource("StyleBoxTexture_dpubc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xkwrr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3tewg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3stt8")
+disabled = true
+text = "Drop"
+
+[node name="AssignButton" type="Button" parent="UsagePanel"]
+custom_minimum_size = Vector2(158, 49)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_top = 17.0
+offset_right = 58.5
+offset_bottom = 61.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_elspp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/disabled = SubResource("StyleBoxTexture_rngi4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q26c0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vfgc0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nuhae")
+disabled = true
+text = "Desvincular"

@@ -28,21 +28,30 @@ func _ready() -> void:
 
 func add_item(item, to_hotbar = false):
 	var added_to_hot_bar = false
-	#Adiciona a hotbar
+	
+	# Adiciona à hotbar, se necessário
 	if to_hotbar:
 		added_to_hot_bar = add_hotbar_item(item)
 		Inventory_g.inventory_updated.emit()
-	#Adiciona ao inventario
+	
+	# Se não foi adicionado à hotbar, tenta adicionar ao inventário
 	if not added_to_hot_bar:
+		# Primeiro, verifica se já existe um slot com o mesmo tipo e efeito
 		for i in range(inventory.size()):
-			if inventory[i] != null and inventory[i]["type"] == item["type"] and  inventory[i]["effect"] == item["effect"]:
-					inventory[i]["quantity"] += item["quantity"]
-					inventory_updated.emit()
-					return true
-			elif inventory[i] == null:
+			if inventory[i] != null and inventory[i]["type"] == item["type"] and inventory[i]["effect"] == item["effect"]:
+				inventory[i]["quantity"] += item["quantity"]
+				inventory_updated.emit()
+				return true
+		
+		# Se não encontrou um slot com o mesmo tipo e efeito, procura o primeiro slot vazio
+		for i in range(inventory.size()):
+			if inventory[i] == null:
 				inventory[i] = item
 				inventory_updated.emit()
 				return true
+	
+	# Se não conseguiu adicionar em nenhum slot, retorna false
+	return false
 	
 func  remove_item(item_type, item_effect) :
 	for i in range(inventory.size()):
@@ -112,3 +121,22 @@ func unnassign_hotbar_item(item_type, item_effect):
 func is_item_assign_to_hotbar(item_to_check):
 	return item_to_check in hotbar
 	
+func swap_inventory_item(index1, index2):
+	if index1 < 0 or index1 > inventory.size() or index2 < 0 or index2 > inventory.size():
+		return false
+		
+	var temp = inventory[index1]
+	inventory[index1] = inventory[index2]
+	inventory[index2] = temp
+	inventory_updated.emit()
+	return true
+	
+func swap_hotbar_item(index1, index2):
+	if index1 < 0 or index1 > hotbar.size() or index2 < 0 or index2 > hotbar.size():
+		return false
+		
+	var temp = hotbar[index1]
+	hotbar[index1] = hotbar[index2]
+	hotbar[index2] = temp
+	inventory_updated.emit()
+	return true

@@ -196,4 +196,13 @@ position = Vector2(0, 2)
 rotation = -1.5708
 shape = SubResource("CircleShape2D_ygqfe")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="Nava_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Nava_timer" to="." method="_on_nava_timer_timeout"]

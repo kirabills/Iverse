@@ -10,9 +10,16 @@ extends Control
 @onready var usage_panel: ColorRect = $UsagePanel
 @onready var inventory_ui =  preload("res://Scenes/Prefabs/Inventotory_ui.tscn")
 @onready var assignButton: Button = $UsagePanel/AssignButton
+@onready var timer_long_press: Timer = $Timer_longPress
+
 
 var slot_index : int = -1
 var isHotbar: bool = false
+
+var can_drag: bool = false
+
+signal drag_start(slot)
+signal drag_end()
 
 var itemHealhBlock: Array = [
 	"Health",
@@ -24,20 +31,17 @@ var itemManaBlock: Array = [
 ]
 
 var item = null
+var item_selected = null
 var isAssingned: bool = false
 #set index
+
+
+
+
 func set_slot_index(new_index):
 	slot_index = new_index
 
-func _on_item_button_pressed() -> void:
-	if item != null:
-		if not isHotbar:
-			usage_panel.visible = !usage_panel.visible
-			return
-		if isHotbar:
-			use_hotbar_pressed()
-				
-		Inventory_g.inventory_updated.emit()
+
 
 func _on_item_button_mouse_entered() -> void:
 	
@@ -57,6 +61,11 @@ func set_empty() -> void:
 	quantity_label.text = ""
 	background.frame = 0
 	
+func isEmpty() -> bool:
+	if item == null:
+		return true
+	return false
+	
 func set_item(new_item) -> void:
 	item = new_item
 	background.frame = 1
@@ -72,6 +81,9 @@ func set_item(new_item) -> void:
 	update_assigment_status()
 
 func _on_drop_button_pressed() -> void:
+	drop()
+
+func drop():
 	if item != null:
 		var drop_position = Inventory_g.player_node.global_position
 		var drop_offset = Vector2(0 , 50)
@@ -80,7 +92,6 @@ func _on_drop_button_pressed() -> void:
 		Inventory_g.remove_item(item["type"], item["effect"] )
 		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		usage_panel.visible = false
-
 #func _on_use_button_pressed() -> void:
 	#usage_panel.visible = false
 	##if item != null and item["effect"] != "":
@@ -101,6 +112,9 @@ func update_assigment_status():
 
 
 func _on_assign_button_pressed() -> void:
+	assign_item_in_hot_bar()
+	
+func assign_item_in_hot_bar():
 	if item != null:
 		if isAssingned:
 			Inventory_g.unnassign_hotbar_item(item["type"], item["effect"])
@@ -119,3 +133,51 @@ func use_hotbar_pressed():
 		Inventory_g.remove_item(item["type"], item["effect"])
 		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		item = null
+	Inventory_g.inventory_updated.emit()
+
+#itemButtons pressed
+func _on_item_button_gui_input(event: InputEvent) -> void:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				if event.is_pressed():
+					if !isEmpty() and !isHotbar:
+						drag_start.emit(self)
+				elif !isHotbar:
+					drag_end.emit()
+					
+				if event.is_pressed():
+					if isEmpty(): return
+					timer_long_press.start(0.5)
+					await timer_long_press.timeout
+					if isHotbar and can_drag:
+						drag_start.emit(self)
+						
+				elif isHotbar and can_drag:
+					drag_end.emit()
+				
+				if event.is_released() and isHotbar:
+					timer_long_press.stop()
+					if !can_drag:
+						use_hotbar_pressed()
+					can_drag = false
+			
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				if event.is_pressed():
+					if !isEmpty() and isHotbar:
+						drag_start.emit(self)
+				if event.is_released():
+					if isHotbar:
+						drag_end.emit()
+	 
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("mouse_left"):
+		if $UsagePanel/DropButton.is_hovered():
+			drop()
+		if $UsagePanel/AssignButton.is_hovered():
+			assign_item_in_hot_bar()
+
+
+func _on_timer_long_press_timeout() -> void:
+	can_drag = true
+	print_debug("Pode Arrastar ", can_drag)
+	

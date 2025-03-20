@@ -4,6 +4,7 @@ var player = null
 var isDead: bool = false
 
 var _spawn
+@onready var nava_a: NavigationAgent2D = $NavigationAgent2D
 
 @export_category("Obejetos")
 @export var texture : Sprite2D
@@ -12,21 +13,24 @@ var _spawn
 
 @export var dano: int = 1
 @export var ranger: float = 200.0
+@export var  speed = 80
+
 func _ready() -> void:
-	_spawn = get_node("/root/Level/Marker2D")
+	_spawn = get_node("/root/Level/Slimes_position")
 	
 func  _process(_delta: float) -> void:
 	anime()
 	var distance = global_position.distance_to(Inventory_g.player_node.global_position)
 	if distance < ranger:
-		var speed = Inventory_g.player_node.Speed * 0.5 
-		var direction = global_position.direction_to(Inventory_g.player_node.global_position)
+		var direction = to_local(nava_a.get_next_path_position()).normalized()
 		velocity = direction * speed
-		
-	else:
+	else :
 		velocity = Vector2.ZERO
-	
+
+		
 	move_and_slide()
+func go_to_target():
+	nava_a.target_position = Inventory_g.player_node.global_position
 
 
 
@@ -69,3 +73,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		_spawn.count -= 1
 		drop()
 		self.queue_free()
+
+
+func _on_nava_timer_timeout() -> void:
+	
+	go_to_target()

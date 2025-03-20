@@ -1,10 +1,36 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://0pog4y3omdsm"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://0pog4y3omdsm"]
 
+[ext_resource type="Texture2D" uid="uid://dyugvpq30omns" path="res://Assets/sprites/tilesets/water_decorations.png" id="1_d8gpo"]
 [ext_resource type="Texture2D" uid="uid://pcksny4fcd8" path="res://Assets/sprites/tilesets/decor_16x16.png" id="1_jfda8"]
+[ext_resource type="Texture2D" uid="uid://clkgk7vh4rxk8" path="res://Assets/sprites/tilesets/water_lillies.png" id="2_qdja6"]
 [ext_resource type="Texture2D" uid="uid://cn5qudfieayjk" path="res://Assets/sprites/tilesets/fences.png" id="2_r50ce"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_s8ogb"]
 tile_data = PackedInt32Array(0, 65541, 0, 65536, 65541, 1, 1, 131077, 0, 65537, 131077, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ma6h"]
+texture = ExtResource("1_d8gpo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7cgok"]
+texture = ExtResource("2_qdja6")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r50ce"]
 texture = ExtResource("1_jfda8")
@@ -16,6 +42,18 @@ texture = ExtResource("1_jfda8")
 1:4/0 = 0
 2:4/0 = 0
 3:4/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qx8lp"]
 texture = ExtResource("2_r50ce")
@@ -124,4 +162,6 @@ terrain_set_0/terrain_0/name = "fences"
 terrain_set_0/terrain_0/color = Color(0, 0, 0, 1)
 sources/2 = SubResource("TileSetAtlasSource_r50ce")
 sources/4 = SubResource("TileSetAtlasSource_qx8lp")
+sources/0 = SubResource("TileSetAtlasSource_6ma6h")
+sources/1 = SubResource("TileSetAtlasSource_7cgok")
 pattern_0 = SubResource("TileMapPattern_s8ogb")
