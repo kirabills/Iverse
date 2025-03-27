@@ -3,8 +3,7 @@ extends Control
 @onready var grid_container = $GridContainer
 @onready var assign_button: Button= $UsagePanel/AssignButton
 @onready var drop_button : Button = $UsagePanel/DropButton
-@onready var usage_panel: NinePatchRect = $UsagePanel2
-
+@onready var usage_panel: NinePatchRect = $UsagePanel
 
 var dragged_slot = null
 var temp_slot_position 
@@ -53,6 +52,7 @@ func _input(event: InputEvent) -> void:
 				dragged_slot.drop()
 			if assign_button.is_hovered():
 				dragged_slot.assign_item_in_hot_bar()
+				
 			
 
 #Armazena a referencia do dragged slot
@@ -80,7 +80,7 @@ func _on_drag_end():
 	# Verifica se há um slot de destino e se ele contém um item
 	if target_slot and target_slot.item != null:
 		# Verifica se os itens são do mesmo tipo (comparando IDs, por exemplo)
-		if target_slot.item["type"] == dragged_slot.item["type"]:
+		if target_slot.item["name"] == dragged_slot.item["name"]:
 			# Combina as quantidades dos itens
 			target_slot.item["quantity"] += dragged_slot.item["quantity"]
 			# Esvazia o slot arrastado

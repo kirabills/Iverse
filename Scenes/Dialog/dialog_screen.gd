@@ -11,7 +11,6 @@ var data: Dictionary = {}
 @export_category("Obejetos")
 @export var _name: Label = null
 @export var _dialog: RichTextLabel = null
-@export var _faceset: TextureRect = null
 
 func _ready() -> void:
 	initialize_dialog()
@@ -37,7 +36,6 @@ func _process(_delta: float) -> void:
 func initialize_dialog() -> void:
 	_name.text = data[_id]["title"]
 	_dialog.text = data[_id]["dialog"]
-	_faceset.texture = load(data[_id]["faceset"])
 	
 	_dialog.visible_characters = 0
 	_global.isControl = false

@@ -21,8 +21,7 @@ var mana_max: int = 100
 signal updatedHP
 #onready variaveis
 
-@onready var inventory_ui: CanvasLayer = $InventoryUI
-@onready var inventory_hotbar = $HotBar/InventoryHorBar
+
 # variaveis mista
 var olhando: String = ""
 var isCoolDown: bool = false
@@ -41,16 +40,7 @@ func _physics_process(_delta):
 	anim_p()
 	move_and_slide()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory"):
-		inventory_ui.visible = !inventory_ui.visible
-		inventory_hotbar.visible = !inventory_hotbar.visible
-		_global.isControl = !_global.isControl
-		get_tree().paused = !get_tree().paused
-	if event.is_action_pressed("ui_select"):
-		cost_mana(3, 2)
-	if event.is_action_pressed("heal"):
-		heal(4, 2)
+
 
 func  move() -> void:
 	

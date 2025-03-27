@@ -1,5 +1,5 @@
 extends Control
-@onready var hotbar_container: HBoxContainer = $HBoxContainer2
+@onready var hotbar_container: HBoxContainer = $HBoxContainer
 
 var dragged_slot = null
 var temp_slot_position 

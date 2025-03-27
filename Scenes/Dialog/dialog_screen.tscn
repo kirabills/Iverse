@@ -1,19 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://bg1s2ohmpxcke"]
 
 [ext_resource type="Script" uid="uid://c5v37lwgqkf17" path="res://Scenes/Dialog/dialog_screen.gd" id="1_6c7u7"]
-[ext_resource type="Texture2D" uid="uid://ct31stmg6bf6e" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_74glq"]
+[ext_resource type="Texture2D" uid="uid://ulklh86jr7cw" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/nine_path_5.png" id="2_5jpao"]
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="2_fi1y2"]
 [ext_resource type="Texture2D" uid="uid://bl0oeio1wumj" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="3_2b2a1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_or1cm"]
 line_spacing = 0.0
 font = ExtResource("2_fi1y2")
-font_color = Color(0.152941, 0.0941176, 0.811765, 1)
+font_color = Color(0.74343, 0.374014, 0.065893, 1)
 shadow_color = Color(0, 0, 0, 0.6)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_u2woq"]
 
-[node name="DialogScreen" type="Control" node_paths=PackedStringArray("_name", "_dialog", "_faceset")]
+[node name="DialogScreen" type="Control" node_paths=PackedStringArray("_name", "_dialog")]
 custom_minimum_size = Vector2(320, 80)
 layout_mode = 3
 anchors_preset = 7
@@ -32,20 +32,25 @@ size_flags_vertical = 8
 script = ExtResource("1_6c7u7")
 _name = NodePath("Background/HContainer/VContainer/Name")
 _dialog = NodePath("Background/HContainer/VContainer/Dialog")
-_faceset = NodePath("Background/Faceset")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -59.0
+offset_left = -120.0
+offset_top = -32.0
+offset_right = 97.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_74glq")
-expand_mode = 1
+texture = ExtResource("2_5jpao")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 
 [node name="Faceset" type="TextureRect" parent="Background"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 11.0
@@ -63,10 +68,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -116.5
-offset_top = -30.0
-offset_right = 178.5
-offset_bottom = 29.0
+offset_left = -247.5
+offset_top = -36.0
+offset_right = 253.5
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -84,16 +89,17 @@ vertical_alignment = 1
 [node name="Dialog" type="RichTextLabel" parent="Background/HContainer/VContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.996078, 0.721569, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_offset_x = 1
 theme_override_fonts/normal_font = ExtResource("2_fi1y2")
+theme_override_font_sizes/normal_font_size = 16
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Background/HContainer/VContainer"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(-5, 2)
-scale = Vector2(304, 56)
+position = Vector2(-5, -7)
+scale = Vector2(504.5, 88)
 texture_normal = SubResource("CanvasTexture_u2woq")
 action = "OK"

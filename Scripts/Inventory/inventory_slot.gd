@@ -69,11 +69,12 @@ func isEmpty() -> bool:
 func set_item(new_item) -> void:
 	item = new_item
 	background.frame = 1
-	icon.texture = new_item["texture"]
+	icon.texture = load(new_item["texture"])
 	icon.scale = Vector2(item["size_texture"], item["size_texture"])
 	quantity_label.text = str(item["quantity"])
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])
+	isAssingned = item["isAssingned"]
 	if item["effect"] != "":
 		item_effect.text = str("+ " + item["effect"])
 	else:
@@ -114,6 +115,7 @@ func update_assigment_status():
 func _on_assign_button_pressed() -> void:
 	assign_item_in_hot_bar()
 	
+	
 func assign_item_in_hot_bar():
 	if item != null:
 		if isAssingned:
@@ -122,9 +124,11 @@ func assign_item_in_hot_bar():
 		else:
 			Inventory_g.add_item(item, true)
 			isAssingned = true
+			
 		update_assigment_status()
 
 func use_hotbar_pressed():
+	if isEmpty(): return
 	if item["effect"] in itemHealhBlock  and  Inventory_g.player_node.isFull(): return
 	if item["effect"] in itemManaBlock and Inventory_g.player_node.manaIsFull(): return
 	Inventory_g.player_node.apply_item_effect(item)
@@ -134,6 +138,7 @@ func use_hotbar_pressed():
 		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		item = null
 	Inventory_g.inventory_updated.emit()
+	Inventory_g.save_inventory()
 
 #itemButtons pressed
 func _on_item_button_gui_input(event: InputEvent) -> void:

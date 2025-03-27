@@ -1,13 +1,15 @@
-@tool
 extends Node2D
+
+class_name InventoryItem
 
 @export_category("Detalhes do Item")
 @export var item_type: String
 @export var item_name: String
-@export var item_texture: Texture
+@export var item_texture: String
 @export var item_effect: String
 @export var size: float
 var scene_path = "res://Scenes/Prefabs/inventory_item.tscn"
+var isAssingned: bool = false
 
 
 #Referencias de no na arvore
@@ -16,13 +18,7 @@ var scene_path = "res://Scenes/Prefabs/inventory_item.tscn"
 
 var player_in_range: bool = false
 
-func _ready() -> void:
-	if not Engine.is_editor_hint():
-		icon_sprite.texture = item_texture
-		
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		icon_sprite.texture = item_texture
+
 	
 func pickup_item() -> void:
 	var item = {
@@ -33,6 +29,7 @@ func pickup_item() -> void:
 		"texture" : item_texture,
 		"scene_path" : scene_path,
 		"size_texture": size,
+		"isAssingned": isAssingned,
 	}
 	if Inventory_g.player_node:
 		Inventory_g.add_item(item, false)

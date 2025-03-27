@@ -16,10 +16,11 @@ var _spawn
 @export var  speed = 80
 
 func _ready() -> void:
-	_spawn = get_node("/root/Level/Slimes_position")
+	_spawn = get_parent().get_node("Marker2D")
 	
 func  _process(_delta: float) -> void:
 	anime()
+	if nava_a.is_navigation_finished(): velocity = Vector2.ZERO; return
 	var distance = global_position.distance_to(Inventory_g.player_node.global_position)
 	if distance < ranger:
 		var direction = to_local(nava_a.get_next_path_position()).normalized()
@@ -27,7 +28,7 @@ func  _process(_delta: float) -> void:
 	else :
 		velocity = Vector2.ZERO
 
-		
+	
 	move_and_slide()
 func go_to_target():
 	nava_a.target_position = Inventory_g.player_node.global_position
@@ -39,6 +40,7 @@ func anime() -> void:
 		texture.flip_h = false
 	else:
 		texture.flip_h = true
+		
 	
 	if isDead:
 		anim.play("dead")

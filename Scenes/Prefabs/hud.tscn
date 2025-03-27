@@ -1,18 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://boavrpsmwi2di"]
+[gd_scene load_steps=13 format=3 uid="uid://boavrpsmwi2di"]
 
 [ext_resource type="Script" uid="uid://b1idtg5fgjavy" path="res://Scripts/Inventory/canvas_layer.gd" id="1_vl57a"]
 [ext_resource type="Texture2D" uid="uid://bmmp8rl4w0qgo" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/slider_progress.png" id="3_8bnre"]
-[ext_resource type="Texture2D" uid="uid://cdsffh7pjsbbr" path="res://Assets/UI/Icons/150ppp/UI NUEVA-09.png" id="3_ystle"]
 [ext_resource type="Texture2D" uid="uid://ce2vt5pe4kdrx" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarUnder.png" id="4_1qlnu"]
+[ext_resource type="Texture2D" uid="uid://bjmmm4frpaepi" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/h_slidder_grabber.png" id="4_wv8s0"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_yppxs"]
 [ext_resource type="Texture2D" uid="uid://d3edx6kl7taph" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarProgress.png" id="5_0d6x4"]
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="6_0d6x4"]
-[ext_resource type="Texture2D" uid="uid://curyj3bq2gtqq" path="res://Assets/UI/ManabarProgress.png" id="7_h05n4"]
+[ext_resource type="Texture2D" uid="uid://curyj3bq2gtqq" path="res://Assets/Ninja Adventure - Asset Pack/Ui/ManabarProgress.png" id="7_h05n4"]
+[ext_resource type="Texture2D" uid="uid://c0g5831b1yoqm" path="res://Assets/InvenrtoryArt/InventoryRect.png" id="9_jvp40"]
+[ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="10_wv8s0"]
+[ext_resource type="PackedScene" uid="uid://dgv2683sr35lu" path="res://Scenes/Prefabs/Inventotory_ui.tscn" id="11_fnk1k"]
+[ext_resource type="PackedScene" uid="uid://capet11ubwyrr" path="res://Scenes/Prefabs/inventory_hor_bar.tscn" id="12_unc3d"]
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("Mobile")]
 process_mode = 3
+layer = 0
 script = ExtResource("1_vl57a")
-Mobile = [NodePath("Virtual Joystick"), NodePath("BoxContainer"), NodePath("BoxContainer2")]
+Mobile = [NodePath("Virtual Joystick"), NodePath("BoxContainer")]
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("4_yppxs")]
 offset_left = 28.0
@@ -42,20 +47,19 @@ scale = Vector2(5.93751, 5.5625)
 texture_normal = ExtResource("3_8bnre")
 action = "attack"
 
-[node name="BoxContainer2" type="BoxContainer" parent="."]
+[node name="PauseContainer" type="BoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -54.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = 36.0
+offset_left = -71.0
+offset_top = 89.0
+offset_right = -29.0
+offset_bottom = 128.0
 grow_horizontal = 0
 
-[node name="InventoryButton" type="TouchScreenButton" parent="BoxContainer2"]
-z_index = 10
-scale = Vector2(0.191388, 0.142857)
-texture_normal = ExtResource("3_ystle")
+[node name="InventoryButton" type="TouchScreenButton" parent="PauseContainer"]
+scale = Vector2(3.23077, 3.54545)
+texture_normal = ExtResource("4_wv8s0")
 action = "inventory"
 
 [node name="ProgressHp" type="TextureProgressBar" parent="."]
@@ -121,3 +125,49 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_0d6x4")
 theme_override_font_sizes/font_size = 16
 text = "0%"
+
+[node name="InventoryUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="NinePatchRect" parent="InventoryUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -178.0
+offset_right = 188.5
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_jvp40")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="InventoryUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_top = 15.0
+offset_right = 37.5
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("10_wv8s0")
+theme_override_font_sizes/font_size = 40
+text = "Inventory"
+
+[node name="Inventotory_UI" parent="InventoryUI/ColorRect" instance=ExtResource("11_fnk1k")]
+layout_mode = 1
+offset_left = 29.0
+offset_top = 79.0
+offset_right = 29.0
+offset_bottom = 79.0
+
+[node name="HotBar" type="CanvasLayer" parent="."]
+
+[node name="InventoryHorBar" parent="HotBar" instance=ExtResource("12_unc3d")]

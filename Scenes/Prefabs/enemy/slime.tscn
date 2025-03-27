@@ -166,6 +166,7 @@ anim = NodePath("AnimationPlayer")
 drop_item = Array[PackedScene]([ExtResource("2_r6t4l"), ExtResource("3_u3dfe")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 19)
 texture = ExtResource("1_tep7s")
 hframes = 7
 vframes = 13
@@ -178,11 +179,12 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
-position = Vector2(0, 2.5)
+position = Vector2(0, 21.5)
 shape = SubResource("RectangleShape2D_lnmsl")
 debug_color = Color(0.924678, 4.5628e-05, 0.679119, 0.42)
 
 [node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, 19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 visible = false
@@ -190,6 +192,7 @@ show_behind_parent = true
 shape = SubResource("CircleShape2D_1ihut")
 
 [node name="hitbox" type="Area2D" parent="."]
+position = Vector2(0, 19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 2)
