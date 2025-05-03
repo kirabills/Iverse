@@ -5,14 +5,28 @@ class_name Level
 @onready var items: Node2D = $Items
 @onready var item_spawn_area: Area2D = $ItemSpawnArea
 @onready var collision_shape: CollisionShape2D = $ItemSpawnArea/CollisionShape2D
-
+@onready var player: Player = $Player
 
 #@export var _player: CharacterBody2D = null
 
 
+
 func  _ready() -> void:
+	#_global.load_data()
+	player.global_position = _global.save_dict.player_position
 	get_window().mode = Window.MODE_FULLSCREEN
 	spawn_random_items(10)
+	
+
+
+func _exit_tree() -> void:
+	_global.save_dict.player_position = player.global_position
+	_global.save()
+	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST or what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_global.save_dict.player_position = player.global_position
+		_global.save()
 
 func get_random_position() -> Vector2:
 	var area_rect = collision_shape.shape.get_rect()
@@ -37,9 +51,13 @@ func spawn_item(data: int, positionn):
 	item_instance.global_position = positionn
 	items.add_child(item_instance)
 	
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
+
+
+
 
 
 

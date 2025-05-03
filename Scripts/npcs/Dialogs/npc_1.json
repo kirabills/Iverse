@@ -1,0 +1,23 @@
+{
+  "intro": [
+	"Olá, viajante!",
+	"Sabe... faz dias que estou esperando por alguém como você.",
+	"Estou precisando de um item especial. Você me ajudaria?"
+  ],
+  "quest": [
+	"O item que preciso é um {item}.",
+	"Se conseguir me trazer, eu te darei algo muito bom em troca.",
+	"Confio em você!"
+  ],
+
+  "complete": [
+	"Você conseguiu! Sabia que podia contar com você.",
+	"Esse {item} vai me ajudar muito.",
+	"Aqui está sua recompensa, com gratidão."
+  ],
+  "thank_you": [
+	"Ainda penso naquele gesto seu. Agradecido até hoje.",
+	"O {item} foi mesmo muito útil!"
+  ],
+  "title": "Velho Sábio"
+}

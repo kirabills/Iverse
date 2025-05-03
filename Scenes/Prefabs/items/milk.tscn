@@ -8,6 +8,7 @@ item_type = "Consumivel"
 item_name = "Leite"
 item_texture = "res://Assets/Ninja Adventure - Asset Pack/Items/Potion/MilkPot.png"
 item_effect = "Mana"
+item_amount = 5
 size = 2.5
 
 [node name="Sprite2D" parent="." index="1"]

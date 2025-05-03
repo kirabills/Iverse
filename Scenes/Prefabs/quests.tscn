@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2eovsr6tql0i"]
+
+[ext_resource type="Script" uid="uid://dr55aetjhossi" path="res://Scripts/quests.gd" id="1_xu3hx"]
+[ext_resource type="PackedScene" uid="uid://b8kdi5mmjj1ot" path="res://Scenes/Prefabs/items/potion.tscn" id="2_6qyrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qyrs"]
+
+[node name="Quests" type="Area2D"]
+script = ExtResource("1_xu3hx")
+item_name = "Leite"
+item_reward = ExtResource("2_6qyrs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6qyrs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

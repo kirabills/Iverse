@@ -82,9 +82,23 @@ func _on_drag_end():
 		# Verifica se os itens são do mesmo tipo (comparando IDs, por exemplo)
 		if target_slot.item["name"] == dragged_slot.item["name"]:
 			# Combina as quantidades dos itens
-			target_slot.item["quantity"] += dragged_slot.item["quantity"]
+			var max_amount = target_slot.item["amount"] 
+			var total_amount = target_slot.item["quantity"] + dragged_slot.item["quantity"]
+			print(total_amount)
+			if target_slot.item["quantity"] == max_amount:
+				drop_slot(dragged_slot, target_slot)
+				return
+			if total_amount <= max_amount:
+				target_slot.item["quantity"] = total_amount
+				dragged_slot.item["quantity"] = total_amount - max_amount
+				Inventory_g.remove_specific_item(dragged_slot.item)
+				_on_inventory_updated()
+			else:
+				target_slot.item["quantity"] = max_amount
+				dragged_slot.item["quantity"] = total_amount - max_amount
+				
 			# Esvazia o slot arrastado
-			Inventory_g.remove_item(dragged_slot.item["type"], dragged_slot.item["effect"])
+			#Inventory_g.remove_item(dragged_slot.item["type"], dragged_slot.item["effect"])
 			_on_inventory_updated()
 		else:
 			# Se os itens forem diferentes, troca os itens de lugar

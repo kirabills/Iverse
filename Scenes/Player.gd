@@ -21,7 +21,6 @@ var mana_max: int = 100
 signal updatedHP
 #onready variaveis
 
-
 # variaveis mista
 var olhando: String = ""
 var isCoolDown: bool = false
@@ -30,6 +29,9 @@ func _ready() -> void:
 	Inventory_g.set_player_reference(self)
 	state_machine = anim["parameters/playback"]
 	anim.active = true
+	load_atributos()
+	updatedHP.emit()
+	
 
 func _physics_process(_delta):
 
@@ -68,6 +70,7 @@ func attack() -> void:
 		Attack_timer.start()
 		set_physics_process(false)
 		is_attacking = true
+		cost_mana(3, 2)
 		
 	
 	
@@ -111,19 +114,33 @@ func heal(amount: int, multiplicador: int):
 	if !isFull():
 		Life_current += amount * multiplicador
 		if Life_current > life_max: Life_current = life_max
+		_global.save_dict.player_health = Life_current
+		_global.save()
 		updatedHP.emit()
 func heal_all():
 	mana_current = mana_max
 	Life_current = life_max
+	_global.save_dict.player_health = Life_current
+	_global.save()
 	updatedHP.emit()
-func heal_full(): Life_current = life_max; updatedHP.emit()
+func heal_full(): 
+	Life_current = life_max
+	_global.save_dict.player_health = Life_current
+	_global.save()
+	updatedHP.emit()
+	
 
-func mana_full(): mana_current = mana_max; updatedHP.emit()
+func mana_full():
+	mana_current = mana_max; updatedHP.emit()
+	_global.save_dict.player_mana = mana_current
+	_global.save()
 
 func manaHeal(amount: int, multiplicador: int):
 	if  !manaIsFull():
 		mana_current += amount * multiplicador
 		if mana_current > mana_max: mana_current = mana_max
+		_global.save_dict.player_mana = mana_current
+		_global.save()
 		updatedHP.emit()
 	else :
 		print("Mana esta cheia: " + str(mana_current))
@@ -133,6 +150,8 @@ func damage(amount: int, multiplicador: int):
 		Life_current -= amount * multiplicador
 		if Life_current < amount:
 			Life_current = 0
+		_global.save_dict.player_health = Life_current
+		_global.save()
 		updatedHP.emit()
 		isCoolDown = true
 		await get_tree().create_timer(1).timeout
@@ -142,6 +161,8 @@ func damage(amount: int, multiplicador: int):
 func cost_mana(amount: int, multiplicador: int) -> void:
 	mana_current -= amount * multiplicador
 	if mana_current < amount: mana_current = 0
+	_global.save_dict.player_mana = mana_current
+	_global.save()
 	updatedHP.emit()
 
 func _on_action_area_entered(_area: Area2D) -> void:
@@ -185,3 +206,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				use_hotbar_item(i)
 				break
 				
+
+
+func load_atributos():
+	Life_current = _global.save_dict.player_health
+	mana_current = _global.save_dict.player_mana

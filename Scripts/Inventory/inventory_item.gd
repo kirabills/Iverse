@@ -7,6 +7,7 @@ class_name InventoryItem
 @export var item_name: String
 @export var item_texture: String
 @export var item_effect: String
+@export var item_amount: int
 @export var size: float
 var scene_path = "res://Scenes/Prefabs/inventory_item.tscn"
 var isAssingned: bool = false
@@ -23,6 +24,7 @@ var player_in_range: bool = false
 func pickup_item() -> void:
 	var item = {
 		"quantity" : 1,
+		"amount": item_amount,
 		"type" : item_type,
 		"name" : item_name,
 		"effect" : item_effect,
@@ -34,8 +36,19 @@ func pickup_item() -> void:
 	if Inventory_g.player_node:
 		Inventory_g.add_item(item, false)
 		
-
-
+func get_item_data() -> Dictionary:
+	return {
+		"quantity" : 1,
+		"amount": item_amount,
+		"type" : item_type,
+		"name" : item_name,
+		"effect" : item_effect,
+		"texture" : item_texture,
+		"scene_path" : scene_path,
+		"size_texture": size,
+		"isAssingned": false,
+	}
+	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
@@ -57,6 +70,9 @@ func set_item_data(data):
 	item_effect = data["effect"]
 	item_texture = data["texture"]
 	size = data["size_texture"]
+	item_amount = data["amount"]
+	$Sprite2D.texture = load(item_texture)
+
 
 func initiate_items(type, names , effect , texture):
 	item_type = type 

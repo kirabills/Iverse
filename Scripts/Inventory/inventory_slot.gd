@@ -86,11 +86,7 @@ func _on_drop_button_pressed() -> void:
 
 func drop():
 	if item != null:
-		var drop_position = Inventory_g.player_node.global_position
-		var drop_offset = Vector2(0 , 50)
-		drop_offset = drop_offset.rotated( Inventory_g.player_node.rotation)
-		Inventory_g.drop_item(item, drop_position + drop_offset)
-		Inventory_g.remove_item(item["type"], item["effect"] )
+		Inventory_g.remove_specific_item(item)
 		Inventory_g.remove_hotbar_item(item["type"], item["effect"])
 		usage_panel.visible = false
 #func _on_use_button_pressed() -> void:
@@ -119,8 +115,10 @@ func _on_assign_button_pressed() -> void:
 func assign_item_in_hot_bar():
 	if item != null:
 		if isAssingned:
-			Inventory_g.unnassign_hotbar_item(item["type"], item["effect"])
 			isAssingned = false
+			Inventory_g.unnassign_hotbar_item(item["type"], item["effect"])
+			item["isAssingned"] = false
+			Inventory_g.save_inventory()
 		else:
 			Inventory_g.add_item(item, true)
 			isAssingned = true
@@ -152,7 +150,8 @@ func _on_item_button_gui_input(event: InputEvent) -> void:
 					
 				if event.is_pressed():
 					if isEmpty(): return
-					timer_long_press.start(0.5)
+					if item["isAssingned"] == true:
+						timer_long_press.start(0.5)
 					await timer_long_press.timeout
 					if isHotbar and can_drag:
 						drag_start.emit(self)

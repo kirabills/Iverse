@@ -13,6 +13,7 @@ var playlist: Array = [
 @export var item: PackedScene = null
 
 
+
 @export_category("Variables")
 @export var password: String = ""
 

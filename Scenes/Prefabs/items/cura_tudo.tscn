@@ -8,6 +8,7 @@ item_type = "Consumivel"
 item_name = "Elixir Green"
 item_texture = "res://Assets/Icons/icon5.png"
 item_effect = "Cura Tudo"
+item_amount = 5
 size = 1.0
 
 [node name="Sprite2D" parent="." index="1"]

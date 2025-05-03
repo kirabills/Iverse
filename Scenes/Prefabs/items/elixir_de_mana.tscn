@@ -8,6 +8,7 @@ item_type = "Consumiveel"
 item_name = "Elixir de Mana"
 item_texture = "res://Assets/Icons/icon9.png"
 item_effect = "Mana Full"
+item_amount = 5
 size = 1.0
 
 [node name="Sprite2D" parent="." index="1"]

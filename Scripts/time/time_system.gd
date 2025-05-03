@@ -1,7 +1,7 @@
 class_name TimeSystem extends Node
 
-@export var date_time: DateTime
-@export var ticks_index: int = 7
+@export var date_time: DateTime = load("res://Scenes/Prefabs/time.tres")
+@export var ticks_index: int = 6
 @export var ticks_per_seconds_options: Array[int] = [
 	2,
 	4,
@@ -13,6 +13,9 @@ class_name TimeSystem extends Node
 signal updated_time
 
 var is_paused: bool = false
+
+func _ready() -> void:
+	load_time_data()
 
 func _process(delta: float) -> void:
 	if OS.is_debug_build():
@@ -34,3 +37,10 @@ func handle_input() -> void:
 		is_paused = !is_paused
 	
 	ticks_index = clamp(ticks_index, 0 , ticks_per_seconds_options.size() - 1)
+
+func load_time_data() -> void:
+	if not FileAccess.file_exists(_global.save_path): return
+	date_time.days = _global.save_dict.day
+	date_time.hours = _global.save_dict.hour
+	date_time.minutes = _global.save_dict.minute
+	date_time.seconds = _global.save_dict.seconds

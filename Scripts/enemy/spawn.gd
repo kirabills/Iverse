@@ -20,8 +20,8 @@ func _ready() -> void:
 	add_child(timer)
 
 func spawn() -> void:
-	if time.date_time.hours >= 6  and time.date_time.hours < 9:
-		if time.date_time.hours == 6 and time.date_time.minutes < 30: return
+	if TimeSystems.date_time.hours >= 6  and TimeSystems.date_time.hours < 9:
+		if TimeSystems.date_time.hours == 6 and TimeSystems.date_time.minutes < 30: return
 		if count < count_spawn and enemy.size() > 0 and enemy[0] != null:
 			var index = randi() % enemy.size() - 1
 			var enemy_instance = enemy[index].instantiate()

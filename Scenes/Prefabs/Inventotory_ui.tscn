@@ -116,7 +116,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_xkwrr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3tewg")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3stt8")
 disabled = true
-text = "Drop"
+text = "Lixo"
 
 [node name="AssignButton" type="Button" parent="UsagePanel"]
 custom_minimum_size = Vector2(158, 49)

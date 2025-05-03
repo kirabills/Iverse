@@ -18,6 +18,7 @@ var _spawn
 func _ready() -> void:
 	_spawn = get_parent().get_node("Marker2D")
 	
+	
 func  _process(_delta: float) -> void:
 	anime()
 	if nava_a.is_navigation_finished(): velocity = Vector2.ZERO; return
@@ -60,7 +61,6 @@ func drop() -> void:
 			return
 		var rand_index = randi() % drop_item.size()
 		var item_instance = drop_item[rand_index].instantiate()
-		
 		item_instance.global_position = global_position
 		get_parent().add_child(item_instance) 
 

@@ -12,4 +12,4 @@ class_name coletavel
 
 #func collect(inventory: Inventory) -> void:
 #	inventory.insert(ItemRes)
-	#queue_free()
+	#ueue_free()

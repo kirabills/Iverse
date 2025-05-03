@@ -1,0 +1,161 @@
+[gd_scene load_steps=25 format=3 uid="uid://dlso6ngcah5un"]
+
+[ext_resource type="Script" uid="uid://ddcsa7kg7sigv" path="res://Scenes/level.gd" id="1_hwrjd"]
+[ext_resource type="PackedScene" uid="uid://c0plpft36a40d" path="res://Scenes/Prefabs/camera_2d.tscn" id="2_y6neh"]
+[ext_resource type="PackedScene" uid="uid://so8t5rtqwajs" path="res://Scenes/Player/player.tscn" id="4_b2qq3"]
+[ext_resource type="PackedScene" uid="uid://ok1pheodfxa" path="res://Scenes/Enviroment/mapa.tscn" id="4_crh0w"]
+[ext_resource type="PackedScene" uid="uid://b26kno32qinwj" path="res://Scenes/Prefabs/npc.tscn" id="6_mnfd0"]
+[ext_resource type="PackedScene" uid="uid://c565ph0enk0a1" path="res://Scenes/Prefabs/clock.tscn" id="7_2klc5"]
+[ext_resource type="PackedScene" uid="uid://boavrpsmwi2di" path="res://Scenes/Prefabs/hud.tscn" id="8_tapeh"]
+[ext_resource type="AudioStream" uid="uid://upbieh0lat6v" path="res://Assets/Ninja Adventure - Asset Pack/Musics/13 - Mystical.ogg" id="9_tp3l8"]
+[ext_resource type="PackedScene" uid="uid://c2mvnwuqmyoqx" path="res://Scenes/Prefabs/bau.tscn" id="13_pa6b8"]
+[ext_resource type="Script" uid="uid://d3mrtg8fb8oem" path="res://Scripts/npcs/esqueleto.gd" id="14_0cmrb"]
+[ext_resource type="Script" uid="uid://dnwua8lonvhtp" path="res://Scripts/time/time_system.gd" id="14_2klc5"]
+[ext_resource type="Texture2D" uid="uid://da3efy6jy6xys" path="res://Assets/sprites/characters/skeleton.png" id="14_c7le1"]
+[ext_resource type="PackedScene" uid="uid://cpyb7yn5at2e5" path="res://Scenes/Prefabs/items/milk.tscn" id="14_crh0w"]
+[ext_resource type="PackedScene" uid="uid://brt0saqnolngw" path="res://Scenes/Prefabs/items/cura_tudo.tscn" id="14_nngtn"]
+[ext_resource type="Script" uid="uid://cdn2ydr21khtg" path="res://Scripts/time/date_time.gd" id="15_nngtn"]
+[ext_resource type="PackedScene" uid="uid://b8kdi5mmjj1ot" path="res://Scenes/Prefabs/items/potion.tscn" id="15_vofx3"]
+[ext_resource type="Resource" uid="uid://bdy7xutwtqv2e" path="res://Scenes/Prefabs/time.tres" id="17_00k4y"]
+[ext_resource type="Script" uid="uid://km12p5ncevqs" path="res://Scripts/directional_light_2d.gd" id="17_nngtn"]
+[ext_resource type="PackedScene" uid="uid://gk225la25wk6" path="res://Scenes/Prefabs/enemy/spawn_scene.tscn" id="17_vofx3"]
+[ext_resource type="PackedScene" uid="uid://b02jk45o0kk02" path="res://Scenes/Prefabs/enemy/slime.tscn" id="18_vofx3"]
+[ext_resource type="PackedScene" uid="uid://b2eovsr6tql0i" path="res://Scenes/Prefabs/quests.tscn" id="20_3a44l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqgf2"]
+size = Vector2(1453, 1498)
+
+[sub_resource type="Resource" id="Resource_vofx3"]
+script = ExtResource("15_nngtn")
+seconds = 0
+minutes = 0
+hours = 6
+days = 0
+metadata/_custom_type_script = "uid://cdn2ydr21khtg"
+
+[sub_resource type="Resource" id="Resource_00k4y"]
+script = ExtResource("15_nngtn")
+seconds = 0
+minutes = 30
+hours = 18
+days = 0
+metadata/_custom_type_script = "uid://cdn2ydr21khtg"
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_hwrjd")
+
+[node name="Player" parent="." instance=ExtResource("4_b2qq3")]
+position = Vector2(392, 271)
+
+[node name="Camera2D" parent="." node_paths=PackedStringArray("player", "limite_right", "limite_left", "limite_up", "limite_down") instance=ExtResource("2_y6neh")]
+zoom = Vector2(1.5, 1.5)
+player = NodePath("../Player")
+limite_right = NodePath("Limit_rigth")
+limite_left = NodePath("Limit_left")
+limite_up = NodePath("Limit_up")
+limite_down = NodePath("Limit_down")
+
+[node name="Limit_rigth" type="Marker2D" parent="Camera2D"]
+position = Vector2(2089, 85)
+scale = Vector2(10, 10)
+
+[node name="Limit_left" type="Marker2D" parent="Camera2D"]
+position = Vector2(-2088, 151)
+
+[node name="Limit_up" type="Marker2D" parent="Camera2D"]
+position = Vector2(81, -1137)
+
+[node name="Limit_down" type="Marker2D" parent="Camera2D"]
+position = Vector2(-2, 1758)
+
+[node name="Mapa" parent="." instance=ExtResource("4_crh0w")]
+
+[node name="HUD" parent="." instance=ExtResource("8_tapeh")]
+
+[node name="Time_ui" type="CanvasLayer" parent="."]
+
+[node name="TimeGui" parent="Time_ui" instance=ExtResource("7_2klc5")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -137.0
+offset_top = 16.0
+offset_right = -137.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_tp3l8")
+playback_type = 1
+parameters/looping = true
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="ItemSpawnArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(1289, 567)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawnArea"]
+shape = SubResource("RectangleShape2D_oqgf2")
+
+[node name="Bau" parent="." instance=ExtResource("13_pa6b8")]
+position = Vector2(240, 28)
+item = ExtResource("14_crh0w")
+password = "bomba"
+
+[node name="Bau2" parent="." instance=ExtResource("13_pa6b8")]
+position = Vector2(-239, -24)
+item = ExtResource("14_nngtn")
+password = "marmelada"
+
+[node name="Bau3" parent="." instance=ExtResource("13_pa6b8")]
+position = Vector2(1697, -146)
+item = ExtResource("15_vofx3")
+password = "chocolate"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-86, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("14_c7le1")
+hframes = 6
+vframes = 13
+
+[node name="NPC" parent="Sprite2D" node_paths=PackedStringArray("_hud") instance=ExtResource("6_mnfd0")]
+position = Vector2(-1, 14)
+script = ExtResource("14_0cmrb")
+dialog_file = "res://Scripts/npcs/Dialogs/npc_1.json"
+_hud = NodePath("../../HUD")
+
+[node name="Quests" parent="Sprite2D" instance=ExtResource("20_3a44l")]
+position = Vector2(0, 24)
+NameQuest = "Busca por leite"
+valor_requerido = 1
+text_quest = "Encontre"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." node_paths=PackedStringArray("time_system")]
+blend_mode = 2
+script = ExtResource("17_nngtn")
+day_color = Color(1, 1, 1, 1)
+nigth_color = Color(0.25098, 0.239216, 0.584314, 1)
+day_start = SubResource("Resource_vofx3")
+night_start = SubResource("Resource_00k4y")
+time_system = NodePath("../TimeSystem")
+
+[node name="TimeSystem" type="Node" parent="."]
+script = ExtResource("14_2klc5")
+date_time = ExtResource("17_00k4y")
+ticks_index = 6
+metadata/_custom_type_script = "uid://dnwua8lonvhtp"
+
+[node name="Marker2D" parent="." node_paths=PackedStringArray("time") instance=ExtResource("17_vofx3")]
+position = Vector2(-1120, -126)
+enemy = Array[PackedScene]([ExtResource("18_vofx3")])
+time = NodePath("../TimeSystem")
+
+[connection signal="updated_time" from="TimeSystem" to="Time_ui/TimeGui" method="_on_time_system_updated_time"]
+[connection signal="updated_time" from="TimeSystem" to="DirectionalLight2D" method="update"]
+
+[editable path="Sprite2D/NPC"]

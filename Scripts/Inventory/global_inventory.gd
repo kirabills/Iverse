@@ -39,6 +39,7 @@ func save_inventory():
 			data["hotbar"].append(null)  # Slot vazio
 
 	var file = FileAccess.open("user://inventory_save.dat", FileAccess.WRITE)
+
 	if file:
 		file.store_var(data)
 		file.close()
@@ -86,9 +87,24 @@ func _ready() -> void:
 	
 	inventory.resize(20)
 	hotbar.resize(hotbar_size)
-	load_inventory()
 	inventory_updated.emit()
 
+func add_item_from_scene(item_scene: PackedScene, quantity: int = 1, to_hotbar: bool = false):
+	# Instancia o item temporariamente para pegar seus dados
+	var item_instance = item_scene.instantiate()
+	
+	# Verifica se o nó tem um script com os dados do item
+	if item_instance.has_method("get_item_data"):
+		var item_data = item_instance.get_item_data()
+		item_data["quantity"] = quantity
+		# Adiciona ao inventário
+		add_item(item_data, to_hotbar)
+	
+		item_instance.queue_free()  # Remove a instância temporária
+	else:
+		print("Erro: O item não tem um método 'get_item_data()'.")
+		item_instance.queue_free()
+		return false
 
 func add_item(item, to_hotbar = false):
 	var added_to_hot_bar = false
@@ -96,39 +112,85 @@ func add_item(item, to_hotbar = false):
 	# Adiciona à hotbar, se necessário
 	if to_hotbar:
 		added_to_hot_bar = add_hotbar_item(item)
-		Inventory_g.inventory_updated.emit()
-		save_inventory()
+		inventory_updated.emit()
+	
 	# Se não foi adicionado à hotbar, tenta adicionar ao inventário
 	if not added_to_hot_bar:
-		# Primeiro, verifica se já existe um slot com o mesmo tipo e efeito
+		# Primeiro, verifica se já existe um slot com o mesmo tipo e efeito que pode ser empilhado
 		for i in range(inventory.size()):
 			if inventory[i] != null and inventory[i]["type"] == item["type"] and inventory[i]["effect"] == item["effect"]:
-				inventory[i]["quantity"] += item["quantity"]
-				inventory_updated.emit()
-				save_inventory()
-				return true
+				var max_amount = inventory[i]["amount"]
+				var total_amount = inventory[i]["quantity"] + item["quantity"]
+				
+				# Se o slot já está cheio, continua procurando
+				if inventory[i]["quantity"] >= max_amount:
+					continue
+				
+				# Se a soma cabe totalmente no slot existente
+				if total_amount <= max_amount:
+					inventory[i]["quantity"] = total_amount
+					inventory_updated.emit()
+					return true
+				# Se excede a capacidade máxima
+				else:
+					# Enche o slot atual até o máximo
+					var remaining = total_amount - max_amount
+					inventory[i]["quantity"] = max_amount
+					item["quantity"] = remaining
+					# Continua tentando adicionar o restante (recursivamente)
+					return add_item(item, to_hotbar)
 		
-		# Se não encontrou um slot com o mesmo tipo e efeito, procura o primeiro slot vazio
+		# Se não encontrou um slot para empilhar, procura o primeiro slot vazio
 		for i in range(inventory.size()):
 			if inventory[i] == null:
-				inventory[i] = item
-				save_inventory()
-				inventory_updated.emit()
-				return true
+				# Verifica se a quantidade não excede o máximo
+				if item["quantity"] > item["amount"]:
+					var new_item = item.duplicate()  # Cria uma cópia para não modificar o original
+					new_item["quantity"] = item["amount"]
+					inventory[i] = new_item
+					item["quantity"] -= item["amount"]
+					inventory_updated.emit()
+					# Tenta adicionar o restante
+					return add_item(item, to_hotbar)
+				else:
+					inventory[i] = item
+					inventory_updated.emit()
+					return true
 	
 	# Se não conseguiu adicionar em nenhum slot, retorna false
 	return false
 	
+
+
 func  remove_item(item_type, item_effect) :
 	for i in range(inventory.size()):
 		if inventory[i] != null and inventory[i]["type"] == item_type and  inventory[i]["effect"] ==  item_effect:
-			inventory[i]["quantity"] -= 1
-			save_inventory()
 			if inventory[i]["quantity"] <= 0:
 				inventory[i] = null
-				save_inventory()
+				return
+			inventory[i]["quantity"] -= 1
+			if inventory[i]["quantity"] <= 0:
+				inventory[i] = null
+			#save_inventory()	
 			inventory_updated.emit()
 			return true
+	return false
+
+func remove_specific_item(item_to_remove: Dictionary) -> bool:
+	for i in range(inventory.size()):
+		var item = inventory[i]
+		
+		# Verifica se é exatamente o mesmo item (comparando referência)
+		if item == item_to_remove:
+			item["quantity"] -= 1
+			
+			if item["quantity"] <= 0:
+				inventory[i] = null
+			
+			#save_inventory()
+			inventory_updated.emit()
+			return true
+	
 	return false
 
 func increase_inventory_size(extra_slot) -> void:
@@ -154,10 +216,12 @@ func drop_item(item_data, drop_position):
 	var item_scene = load(item_data["scene_path"])
 	var item_instance = item_scene.instantiate()
 	item_instance.set_item_data(item_data)
+	item_instance.z_index = -1
+	print(item_instance.z_index)
 	drop_position = adjust_drop_position(drop_position)
 	item_instance.global_position = drop_position
 	get_tree().current_scene.add_child(item_instance)
-	save_inventory()
+	#save_inventory()
 	
 #adiciona o item a hot bar
 func add_hotbar_item(item):
@@ -165,7 +229,7 @@ func add_hotbar_item(item):
 		if hotbar[i] == null:
 			item["isAssingned"] = true
 			hotbar[i] = item
-			save_inventory()
+			#save_inventory()
 			return true
 	return false
 
@@ -175,7 +239,7 @@ func remove_hotbar_item(item_type, item_effect):
 		if hotbar[i] != null and hotbar[i]["type"] == item_type and hotbar[i]["effect"] == item_effect:
 			if hotbar[i]["quantity"] <= 0:
 				hotbar[i] = null
-				save_inventory()
+				#save_inventory()
 			inventory_updated.emit()
 			return true
 	return false
@@ -185,7 +249,7 @@ func unnassign_hotbar_item(item_type, item_effect):
 	for i in range(hotbar.size()):
 		if hotbar[i] != null and hotbar[i]["type"] == item_type and hotbar[i]["effect"] == item_effect:
 			hotbar[i] = null
-			save_inventory()
+			#save_inventory()
 			inventory_updated.emit()
 			return true
 	return false
@@ -201,7 +265,7 @@ func swap_inventory_item(index1, index2):
 	var temp = inventory[index1]
 	inventory[index1] = inventory[index2]
 	inventory[index2] = temp
-	save_inventory()
+	#save_inventory()
 	inventory_updated.emit()
 	return true
 	
@@ -212,6 +276,14 @@ func swap_hotbar_item(index1, index2):
 	var temp = hotbar[index1]
 	hotbar[index1] = hotbar[index2]
 	hotbar[index2] = temp
-	save_inventory()
+	#save_inventory()
 	inventory_updated.emit()
 	return true
+
+func find_item(item_name: String):
+	var found_items = inventory.filter(func(item): return item != null and item.get("name") == item_name)
+	var _item
+	
+	if found_items.size() > 0:
+		_item = found_items[0]
+	return _item

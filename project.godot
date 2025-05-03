@@ -20,15 +20,14 @@ config/icon="res://icon.svg"
 _global="*res://Scripts/Global/global.gd"
 Inventory_g="*res://Scripts/Inventory/global_inventory.gd"
 PersistState="*res://Scripts/persist_state.gd"
+TimeSystems="*res://Scripts/time/time_system.gd"
 
 [display]
 
-window/size/viewport_width=853
+window/size/viewport_width=852
 window/size/viewport_height=480
-window/size/mode=3
-window/size/resizable=false
-window/size/window_width_override=1440
-window/size/window_height_override=2560
+window/size/window_width_override=680
+window/size/window_height_override=480
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -152,6 +151,7 @@ pointing/emulate_touch_from_mouse=true
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_4="Inimigos"
 
 [rendering]
 

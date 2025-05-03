@@ -7,7 +7,7 @@ extends DirectionalLight2D
 @export var day_start: DateTime
 @export var night_start: DateTime
 @export var transition_time: int = 30
-@export var time_system: TimeSystem
+@export var time_system: TimeSystem = TimeSystems
 
 var in_transition: bool = false
 
@@ -32,12 +32,13 @@ var current_state: DayState = DayState.DAY
 
 
 func _ready() -> void:
-	var diff_day_start = time_system.date_time.diff_without_days(day_start)
-	var diff_nigth_start = time_system.date_time.diff_without_days(night_start)
+	current_state = _global.save_dict.current_state_day
+	var diff_day_start = TimeSystems.date_time.diff_without_days(day_start)
+	var diff_nigth_start = TimeSystems.date_time.diff_without_days(night_start)
 	
 	if diff_day_start < 0 or diff_nigth_start > 0:
 		current_state = DayState.NIGTH
-	print(diff_day_start)
+		_global.save_dict.current_state_day = current_state
 		
 
 func update(game_time: DateTime) -> void:
@@ -58,6 +59,7 @@ func upadate_transition(time_diff: int, next_state: DayState) -> void:
 	var ratio = 1 - (time_diff as float / (transition_time * 60))
 	if ratio > 1:
 		current_state = next_state
+		_global.save_dict.current_state_day = current_state
 		in_transition = false
 	else:
 		color = color_map[current_state].lerp(color_map[next_state], ratio)

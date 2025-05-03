@@ -13,6 +13,7 @@ func _ready() -> void:
 	self.limit_left = int(limite_left.position.x)
 	self.limit_top = int(limite_up.position.y)
 	self.limit_bottom = int(limite_down.position.y)
+	
 
 func _process(_delta: float) -> void:
 	self.position.x = player.position.x

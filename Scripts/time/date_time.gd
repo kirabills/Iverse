@@ -32,5 +32,4 @@ func diff_without_days(other_time: DateTime) -> int:
 	var diff_seconds = seconds - other_time.seconds + diff_minutes * 60
 	return diff_seconds
 	
-func hourss():
-	return hours 
+ 

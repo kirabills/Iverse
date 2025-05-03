@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://boavrpsmwi2di"]
+[gd_scene load_steps=36 format=3 uid="uid://boavrpsmwi2di"]
 
 [ext_resource type="Script" uid="uid://b1idtg5fgjavy" path="res://Scripts/Inventory/canvas_layer.gd" id="1_vl57a"]
 [ext_resource type="Texture2D" uid="uid://bmmp8rl4w0qgo" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/slider_progress.png" id="3_8bnre"]
 [ext_resource type="Texture2D" uid="uid://ce2vt5pe4kdrx" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarUnder.png" id="4_1qlnu"]
-[ext_resource type="Texture2D" uid="uid://bjmmm4frpaepi" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/h_slidder_grabber.png" id="4_wv8s0"]
+[ext_resource type="Texture2D" uid="uid://rlhcctc8lesb" path="res://Assets/UI/Icon_Small_Blank_Menu.png" id="4_m6165"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_yppxs"]
 [ext_resource type="Texture2D" uid="uid://d3edx6kl7taph" path="res://Assets/Ninja Adventure - Asset Pack/Ui/healthbarProgress.png" id="5_0d6x4"]
 [ext_resource type="FontFile" uid="uid://ddg4g8l4pxlch" path="res://fonts/equipment-pro-v1.1/EquipmentPro.ttf" id="6_0d6x4"]
@@ -11,7 +11,86 @@
 [ext_resource type="Texture2D" uid="uid://c0g5831b1yoqm" path="res://Assets/InvenrtoryArt/InventoryRect.png" id="9_jvp40"]
 [ext_resource type="FontFile" uid="uid://bi04iecmbt37l" path="res://Assets/Fonts/ARCADECLASSIC.TTF" id="10_wv8s0"]
 [ext_resource type="PackedScene" uid="uid://dgv2683sr35lu" path="res://Scenes/Prefabs/Inventotory_ui.tscn" id="11_fnk1k"]
+[ext_resource type="Texture2D" uid="uid://bwkh3ribf43kn" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_hover.png" id="11_unc3d"]
+[ext_resource type="StyleBox" uid="uid://cgqc281vd1ew8" path="res://Scenes/Prefabs/pause_theme.tres" id="12_fnk1k"]
 [ext_resource type="PackedScene" uid="uid://capet11ubwyrr" path="res://Scenes/Prefabs/inventory_hor_bar.tscn" id="12_unc3d"]
+[ext_resource type="Texture2D" uid="uid://duhyptkq6ohta" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_pressed.png" id="13_m6165"]
+[ext_resource type="Texture2D" uid="uid://bxlbohlyn6dx8" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Theme/Theme1/button_normal.png" id="13_unc3d"]
+[ext_resource type="Script" uid="uid://xw46ytpw10oy" path="res://Scripts/UI/pause_menu_ui.gd" id="15_m6165"]
+[ext_resource type="FontFile" uid="uid://clj6t2kgwb80v" path="res://Assets/Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="18_62dgv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6165"]
+texture = ExtResource("9_jvp40")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unc3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnk1k"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+bg_color = Color(0.827451, 0.52549, 0.372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.678431, 0.364706, 1)
+expand_margin_top = 2.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_fnk1k"]
+TabContainer/constants/icon_separation = 0
+TabContainer/font_sizes/font_size = 16
+TabContainer/fonts/font = ExtResource("10_wv8s0")
+TabContainer/styles/panel = SubResource("StyleBoxTexture_m6165")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_unc3d")
+TabContainer/styles/tab_hovered = ExtResource("12_fnk1k")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_fnk1k")
+TabContainer/styles/tab_unselected = ExtResource("12_fnk1k")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bl23u"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62dgv"]
+texture = ExtResource("11_unc3d")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vgsgi"]
+texture = ExtResource("13_m6165")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hgc7u"]
+texture = ExtResource("13_unc3d")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgsgi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgc7u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wigav"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lb5bv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugbdj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_owne1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi051"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vogek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx0jo"]
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("Mobile")]
 process_mode = 3
@@ -58,8 +137,9 @@ offset_bottom = 128.0
 grow_horizontal = 0
 
 [node name="InventoryButton" type="TouchScreenButton" parent="PauseContainer"]
-scale = Vector2(3.23077, 3.54545)
-texture_normal = ExtResource("4_wv8s0")
+position = Vector2(-11, 21)
+scale = Vector2(0.2, 0.183)
+texture_normal = ExtResource("4_m6165")
 action = "inventory"
 
 [node name="ProgressHp" type="TextureProgressBar" parent="."]
@@ -136,9 +216,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -188.5
-offset_top = -178.0
+offset_top = -162.5
 offset_right = 188.5
-offset_bottom = 178.0
+offset_bottom = 193.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_jvp40")
@@ -147,27 +227,138 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Label" type="Label" parent="InventoryUI/ColorRect"]
+[node name="HotBar" type="CanvasLayer" parent="."]
+
+[node name="InventoryHorBar" parent="HotBar" instance=ExtResource("12_unc3d")]
+
+[node name="PauseMenu" type="TabContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -204.0
+offset_right = 211.5
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fnk1k")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("10_wv8s0")
+theme_override_font_sizes/font_size = 16
+tab_alignment = 1
+current_tab = 0
+use_hidden_tabs_for_min_size = true
+script = ExtResource("15_m6165")
+
+[node name="B" type="TabBar" parent="PauseMenu"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="PauseMenu/B"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -37.5
-offset_top = 15.0
-offset_right = 37.5
-offset_bottom = 38.0
+offset_left = -99.0
+offset_top = 25.5
+offset_right = 99.0
+offset_bottom = 66.5
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("10_wv8s0")
 theme_override_font_sizes/font_size = 40
 text = "Inventory"
 
-[node name="Inventotory_UI" parent="InventoryUI/ColorRect" instance=ExtResource("11_fnk1k")]
+[node name="Inventotory_UI" parent="PauseMenu/B" instance=ExtResource("11_fnk1k")]
 layout_mode = 1
-offset_left = 29.0
-offset_top = 79.0
-offset_right = 29.0
-offset_bottom = 79.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = -98.0
+offset_right = 43.0
+offset_bottom = -98.0
+grow_vertical = 2
 
-[node name="HotBar" type="CanvasLayer" parent="."]
+[node name="M" type="TabBar" parent="PauseMenu"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
 
-[node name="InventoryHorBar" parent="HotBar" instance=ExtResource("12_unc3d")]
+[node name="Continue" type="Button" parent="PauseMenu/M"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.5
+offset_top = 128.0
+offset_right = 100.5
+offset_bottom = 158.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_0d6x4")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bl23u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_62dgv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vgsgi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hgc7u")
+text = "Continuar"
+
+[node name="sair" type="Button" parent="PauseMenu/M"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.5
+offset_top = 161.0
+offset_right = 100.5
+offset_bottom = 190.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_0d6x4")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bl23u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_62dgv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vgsgi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hgc7u")
+text = "Sair
+"
+
+[node name="Quests" type="TabBar" parent="PauseMenu"]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 2
+
+[node name="ItemList" type="ItemList" parent="PauseMenu/Quests"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.5
+offset_top = -156.0
+offset_right = 194.5
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_62dgv")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vgsgi")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hgc7u")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_wigav")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_lb5bv")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_ugbdj")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_owne1")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_xi051")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_vogek")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_rx0jo")
+allow_search = false
+
+[connection signal="pressed" from="PauseMenu/M/Continue" to="PauseMenu" method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/M/sair" to="PauseMenu" method="_on_sair_pressed"]
